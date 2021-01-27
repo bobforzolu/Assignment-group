@@ -47,7 +47,7 @@ public class Player {
 	
 	public void playerinfo()
 	{
-		System.out.format( "| %2s              |%2.2f             |", fullName, ballance);
+		System.out.format( "| %2s            |%2.2f        |%2.2d        |", fullName, ballance, wins);
 		
 		
 	}
