@@ -1,9 +1,11 @@
 package mru.game.controller;
 import mru.game.model.*;
-import java.util.*;
+import mru.game.view.AppMenu;
 
-public class GameManager {
-	ArrayList<Player> players = new ArrayList<Player>();
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
+	
 	/* In this class toy'll need these methods:
 	 * A constructor
 	 * A method to load the txt file into an arraylist (if it exists, so you check if the txt file exists first)
@@ -12,43 +14,64 @@ public class GameManager {
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
-	public GameManager()
-	{
+
+public class GameManager {
+	
+	private final String FILE_PATH = "res/CasinoInfo.txt";
+	ArrayList<Player> players = new ArrayList<Player>();
+	AppMenu appMenu;
+	
+	public GameManager() throws FileNotFoundException {
+		appMenu = new AppMenu();
+		
+	
+		launchGame();
+	}
+	private void launchGame() { 
+		
+		char choice = appMenu.mainMenu();
+		
+		switch (choice) {
+		case 'p':
+			
+			break;
+		case 's':
+			search();
+			break;
+		case 'e':
+			saveFile();
+			break;
+		}	
+	}
+	private void loadFile() throws FileNotFoundException {
+		File ci = new File(FILE_PATH);
 		
 	}
-	private void loadFile()
-	{
+	public void topPlayer() {
 		
 	}
-	public void topPlayer()
-	{
+	public void findPlayer() {
 		
 	}
-	public void findPlayer()
-	{
+	private void saveFile() {
 		
 	}
-	private void saveFile()
-	{
+	private void search() {
+		char choice = appMenu.subMenu();
 		
-	}
-	private int search()
-	{
-		// check if an item is in the list or not
-		int foundInfo = -1;
-		// current location in the list
-		int j = 0 ;
-		// list size
-		int dataSize;
-		// player class
-		Player found;
-		
-		
-		dataSize = players.size();
+		switch (choice) {
+		case 't':
+			topPlayer();
+			break;
+		case 'n':
+			findPlayer();
+			break;
+		case 'b':
+			launchGame();
+			break;
+		}
 		
 		
-		
-		return foundInfo;
 		
 	}
 	
