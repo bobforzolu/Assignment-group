@@ -13,7 +13,7 @@ import java.util.*;
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
-<<<<<<< HEAD
+
 	
 	// the top score in the game
 	
@@ -62,7 +62,7 @@ public class GameManager {
 	
 	public void topPlayer()
 	{
-		// current location in the list
+		// current laasocation in the list
 		int j=0;
 		// contains the list size
 		int listsize;
