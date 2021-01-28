@@ -11,11 +11,11 @@ public class Player {
 	private int wins;
 	private String fullName;
 	
-	Player(String name, double bal,int wincount)
+	public Player(String name, double bal,int winCount)
 	{
 		fullName = name;
 		ballance = bal;
-		wins = wincount;
+		wins = winCount;
 		
 	}
 	
@@ -23,13 +23,13 @@ public class Player {
 	{
 		ballance = bal;
 	}
-	public void setWin(int win)
+	public void setWin(int winCount)
 	{
-		wins = win;
+		wins = winCount;
 	}
-	public void setName( String myName)
+	public void setName(String name)
 	{
-		fullName = myName;
+		fullName = name;
 	}
 	public double getBallance()
 	{

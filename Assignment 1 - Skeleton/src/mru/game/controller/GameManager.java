@@ -1,9 +1,10 @@
 package mru.game.controller;
 import mru.game.model.*;
-import java.util.*;
+import mru.game.view.AppMenu;
 
-public class GameManager {
-	ArrayList<Player> players = new ArrayList<Player>();
+import java.io.*;
+import java.util.*;
+	
 	/* In this class toy'll need these methods:
 	 * A constructor
 	 * A method to load the txt file into an arraylist (if it exists, so you check if the txt file exists first)
@@ -12,18 +13,53 @@ public class GameManager {
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
+<<<<<<< HEAD
 	
 	// the top score in the game
+	
+	
+
+
+public class GameManager {
+	
+	private final String FILE_PATH = "res/CasinoInfo.txt";
+	ArrayList<Player> players = new ArrayList<Player>();
+	AppMenu appMenu;
+	private Scanner kb = new Scanner(System.in);
+	
 	private int topScore;
 	
-	public GameManager()
-	{
+	
+	public GameManager() throws FileNotFoundException {
+		appMenu = new AppMenu();
+		
+	
+		launchGame();
+	}
+	
+	private void launchGame() { 
+		
+		char choice = appMenu.mainMenu();
+		
+		switch (choice) {
+		case 'p':
+			
+			break;
+		case 's':
+			playerInfoMenu();
+			break;
+		case 'e':
+			saveFile();
+			break;
+		}	
+	}
+	
+	
+	private void loadFile() throws FileNotFoundException {
+		File ci = new File(FILE_PATH);
 		
 	}
-	private void loadFile()
-	{
-		
-	}
+	
 	public void topPlayer()
 	{
 		// current location in the list
@@ -48,25 +84,25 @@ public class GameManager {
 			j++;
 			
 		}
+	}
 		
 	
-		
-	}
-	/**
-	 *@description searches the desire player 
-	 * 
-	 * 
-	 * @param name  the name of the user
-	 * @return none
-	 */
-	public void findPlayer(String name)
+
+	public void findPlayer()
 	{
+		String playerName;
 		// location of the user in the list
 		int userInList;
 		// player class
 		Player user ;
-		// asign thr location using the search() function
-		userInList = search( name);
+		
+		
+		System.out.print("Enter The Player Name: ");
+		playerName = kb.nextLine();
+		
+		// search for the user using the search() function
+		userInList = search( playerName);
+		
 		if(userInList >=0)
 		{
 			user = players.get(userInList);
@@ -77,10 +113,36 @@ public class GameManager {
 			System.out.print("user not found");
 		}
 	}
-	private void saveFile()
-	{
+	private void saveFile() {
 		
+
 	}
+	
+	
+	public void playerInfoMenu()
+	{
+		char choice = appMenu.subMenu();
+	
+		switch (choice) {
+		case 't':
+			topPlayer();
+			break;
+		case 'n':
+			findPlayer();
+			break;
+		case 'b':
+			launchGame();
+			break;
+		}
+	}
+	
+	
+	
+	/**
+	 * finds the location of an item in the list
+	 * @param name name of the item
+	 * @return
+	 */
 	private int search(String name)
 	{
 		// check if an item is in the list if it remains as one item is not in the list
@@ -111,6 +173,7 @@ public class GameManager {
 		return foundInfo;
 		
 	}
+	
 	
 	
 	
