@@ -39,7 +39,7 @@ public class Player {
 	{
 		return wins;
 	}
-	public String setName()
+	public String getName()
 	{
 		return fullName;
 	}
@@ -53,6 +53,7 @@ public class Player {
 	}
 	public void topPlayer()
 	{
+		
 		System.out.format( "| %2s              |%2d               |", fullName, wins);
 		
 	}
