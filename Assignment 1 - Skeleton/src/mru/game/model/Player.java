@@ -9,11 +9,11 @@ public class Player {
 	
 	private double ballance;
 	private int wins;
-	private String fullName;
+	private String playerName;
 	
 	public Player(String name, double bal,int winCount)
 	{
-		fullName = name;
+		playerName = name;
 		ballance = bal;
 		wins = winCount;
 		
@@ -29,7 +29,7 @@ public class Player {
 	}
 	public void setName(String name)
 	{
-		fullName = name;
+		playerName = name;
 	}
 	public double getBallance()
 	{
@@ -41,20 +41,21 @@ public class Player {
 	}
 	public String getName()
 	{
-		return fullName;
+		return playerName;
 	}
 	
 	
-	public void playerinfo()
+	public String toString()
 	{
-		System.out.format( "| %2s            |%2.2f        |%2.2d        |", fullName, ballance, wins);
+		String info = "|name: "+playerName+"| |ballance: $"+ ballance+ "|| wins:" +wins+"|";
 		
+		return info;
 		
 	}
 	public void topPlayer()
 	{
 		
-		System.out.format( "| %2s              |%2d               |", fullName, wins);
+		System.out.format( "|%2s              |%2d               %n", playerName, wins);
 		
 	}
 	

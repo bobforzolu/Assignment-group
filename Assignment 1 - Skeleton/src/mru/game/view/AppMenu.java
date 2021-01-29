@@ -2,6 +2,8 @@ package mru.game.view;
 
 import java.util.Scanner;
 
+import mru.game.model.Player;
+
 public class AppMenu {
 	
 	Scanner input;
@@ -36,6 +38,10 @@ public class AppMenu {
 		System.out.println("Enter name here: ");
 		String name = input.nextLine();
 		return name;
+	}
+	public void plyInfo(Player ply)
+	{
+		System.out.print(ply);
 	}
 	
 	/**

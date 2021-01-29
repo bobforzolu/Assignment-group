@@ -1,7 +1,8 @@
 package mru.game.controller;
 import mru.game.model.*;
 import mru.game.view.AppMenu;
-
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
 	
@@ -23,15 +24,17 @@ import java.util.*;
 public class GameManager {
 	
 	private final String FILE_PATH = "res/CasinoInfo.txt";
-	ArrayList<Player> players = new ArrayList<Player>();
+	ArrayList<Player> players;
 	AppMenu appMenu;
-	private Scanner kb = new Scanner(System.in);
+	 
 	
-	private int topScore;
+	private int topScore = 0;
 	
 	
 	public GameManager() throws FileNotFoundException {
+		players = new ArrayList<Player>();
 		appMenu = new AppMenu();
+		loadFile();
 		
 	
 		launchGame();
@@ -58,60 +61,70 @@ public class GameManager {
 	private void loadFile() throws FileNotFoundException {
 		File ci = new File(FILE_PATH);
 		
+		String currentLine;
+		String[] splittedLine;
+		
+		
+		if(ci.exists())
+		{
+			Scanner fileReader = new Scanner(ci);
+			
+			while(fileReader.hasNextLine())
+			{
+				currentLine = fileReader.nextLine();
+				splittedLine = currentLine.split(",");
+				
+				Player p = new Player(splittedLine[0], Double.parseDouble(splittedLine[1]) , Integer.parseInt(splittedLine[2]));
+				players.add(p);
+			}
+			
+			fileReader.close();
+		}
+		
 	}
 	
 	public void topPlayer()
 	{
-		// current laasocation in the list
-		int j=0;
-		// contains the list size
-		int listsize;
-		// the player class to call functions
-		Player user;
 		
 		
-		listsize = players.size();
-		while(j >= listsize)
+		for(Player p: players)
 		{
-			// get the person in the list location j(number)
-			user = players.get(j);
-			
-			if(user.getWin()>= topScore)
+			if(p.getWin() >= topScore)
 			{
-				user.topPlayer();
+				topScore = p.getWin();
 			}
-			// now check the next person in the list
-			j++;
-			
+		}
+		
+		for(Player p: players)
+		{
+			if(p.getWin() >= topScore)
+			{
+				p.topPlayer();
+			}
 		}
 	}
 		
 	
 
-	public void findPlayer()
+	private Player findPlayer()
 	{
-		String playerName;
-		// location of the user in the list
-		int userInList;
-		// player class
-		Player user ;
+		Scanner input = new Scanner(System.in);
+		String name;
+		Player ply = null;
 		
+		name = input.nextLine();
 		
-		System.out.print("Enter The Player Name: ");
-		playerName = kb.nextLine();
-		
-		// search for the user using the search() function
-		userInList = search( playerName);
-		
-		if(userInList >=0)
+		for(Player p: players)
 		{
-			user = players.get(userInList);
-			user.playerinfo();
+			if(p.getName().equals(name))
+			{
+				ply = p;
+				break;
+
+			}
 		}
-		else
-		{
-			System.out.print("user not found");
-		}
+		return ply;
+		
 	}
 	private void saveFile() {
 		
@@ -128,7 +141,8 @@ public class GameManager {
 			topPlayer();
 			break;
 		case 'n':
-			findPlayer();
+			Player ply = findPlayer();
+			appMenu.plyInfo(ply);
 			break;
 		case 'b':
 			launchGame();
@@ -141,7 +155,7 @@ public class GameManager {
 	/**
 	 * finds the location of an item in the list
 	 * @param name name of the item
-	 * @return
+	 * @return foundinfo item position
 	 */
 	private int search(String name)
 	{
@@ -152,21 +166,25 @@ public class GameManager {
 		// list size
 		int dataSize;
 		// player class
-		Player found;
+		Player player;
+		
+		boolean found = false;
 		
 		// list size
 		dataSize = players.size();
 		
-		while(j <= dataSize)
+		while(j <= dataSize && !found)
 		{
 			// get the item in the list and stores in in the player class
-			found = players.get(j);
+			player = players.get(j);
 		
 			// check if the inputed name matches the ones in the list
-			if(found.getName().equals(name))
+			if(player.getName().equals(name))
 			{
 				// store the item in foundinfo
 				foundInfo = j;
+				found = true;
+				
 			}
 			j++;
 		}
