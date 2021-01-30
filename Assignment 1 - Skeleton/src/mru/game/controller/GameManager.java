@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.*;
 import java.util.*;
+
+
 	
 	/* In this class toy'll need these methods:
 	 * A constructor
@@ -28,25 +30,28 @@ public class GameManager {
 	AppMenu appMenu;
 	 
 	
-	private int topScore = 0;
+	private int score = 0;
 	
 	
 	public GameManager() throws FileNotFoundException {
 		players = new ArrayList<Player>();
 		appMenu = new AppMenu();
+		
 		loadFile();
 		
-	
-		launchGame();
+		showMainMenu();
+	}
+	private void playGame() {
+		
 	}
 	
-	private void launchGame() { 
+	private void showMainMenu() throws FileNotFoundException { 
 		
 		char choice = appMenu.mainMenu();
 		
 		switch (choice) {
 		case 'p':
-			
+			playGame();
 			break;
 		case 's':
 			playerInfoMenu();
@@ -54,9 +59,11 @@ public class GameManager {
 		case 'e':
 			saveFile();
 			break;
+		default:
+			System.out.println("\nError: Please try again.");
+			showMainMenu();
 		}	
 	}
-	
 	
 	private void loadFile() throws FileNotFoundException {
 		File ci = new File(FILE_PATH);
@@ -82,57 +89,53 @@ public class GameManager {
 		}
 		
 	}
-	
+
 	public void topPlayer()
 	{
 		
-		
 		for(Player p: players)
 		{
-			if(p.getWin() >= topScore)
+			if(p.getWin() >= score)
 			{
-				topScore = p.getWin();
-			}
+				score = p.getWin();
+			} 
 		}
 		
 		for(Player p: players)
 		{
-			if(p.getWin() >= topScore)
+			if(p.getWin() >= score)
 			{
 				p.topPlayer();
 			}
 		}
 	}
-		
 	
-
-	private Player findPlayer()
-	{
-		Scanner input = new Scanner(System.in);
-		String name;
+	private Player findPlayer(String name) {
 		Player ply = null;
 		
-		name = input.nextLine();
-		
-		for(Player p: players)
-		{
+		for(Player p: players) {
 			if(p.getName().equals(name))
 			{
 				ply = p;
 				break;
-
 			}
 		}
 		return ply;
-		
 	}
-	private void saveFile() {
+	private void saveFile() throws FileNotFoundException {
+		File ci = new File(FILE_PATH);
+		PrintWriter pw = new PrintWriter(ci);
 		
-
+		System.out.println("\nSaving...\nDone! Please visit us again!");
+		
+		for (Player p : players) {
+			pw.println(p.format());
+		}
+		pw.close();
 	}
 	
 	
-	public void playerInfoMenu()
+	public void playerInfoMenu() throws FileNotFoundException
 	{
 		char choice = appMenu.subMenu();
 	
@@ -141,12 +144,16 @@ public class GameManager {
 			topPlayer();
 			break;
 		case 'n':
-			Player ply = findPlayer();
-			appMenu.plyInfo(ply);
+			String name = appMenu.enterName();
+			Player ply = findPlayer(name);
+			appMenu.showPlayer(ply);
 			break;
 		case 'b':
-			launchGame();
+			showMainMenu();
 			break;
+		default:
+			System.out.println("\nError: Please try again.");
+			playerInfoMenu();
 		}
 	}
 	

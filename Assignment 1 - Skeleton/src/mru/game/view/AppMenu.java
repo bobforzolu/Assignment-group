@@ -35,14 +35,22 @@ public class AppMenu {
 	}
 	
 	public String enterName() {
-		System.out.println("Enter name here: ");
-		String name = input.nextLine();
+		System.out.print("\nEnter name here: ");
+		String name = input.next().trim();
 		return name;
+	}
+	
+	public void showPlayer(Player ply) {
+		if (ply != null)
+			System.out.println(ply);
+		else 
+			System.out.println("\nThat profile does not exist.");
 	}
 	public void plyInfo(Player ply)
 	{
 		System.out.print(ply);
 	}
+	
 	
 	/**
 	 * This class will be used to show the menus and sub menus to the user

@@ -7,21 +7,21 @@ public class Player {
 	 * It is basically a model class for each record in the txt file
 	 */
 	
-	private double ballance;
+	private double balance;
 	private int wins;
 	private String playerName;
 	
 	public Player(String name, double bal,int winCount)
 	{
 		playerName = name;
-		ballance = bal;
+		balance = bal;
 		wins = winCount;
 		
 	}
 	
-	public void setBallance(double bal)
+	public void setBalance(double bal)
 	{
-		ballance = bal;
+		balance = bal;
 	}
 	public void setWin(int winCount)
 	{
@@ -31,9 +31,9 @@ public class Player {
 	{
 		playerName = name;
 	}
-	public double getBallance()
+	public double getBalance()
 	{
-		return ballance;
+		return balance;
 	}
 	public int getWin()
 	{
@@ -47,7 +47,14 @@ public class Player {
 	
 	public String toString()
 	{
-		String info = "|name: "+playerName+"| |ballance: $"+ ballance+ "|| wins:" +wins+"|";
+		
+		
+		String info = "\n              -PLAYER INFO-           "
+				+ "\n+==============+==========+==============+"
+				+ "\n|NAME          |# WINS    |BALANCE       |" 
+				+ "\n+==============+==========+==============+"
+				+ "\n|"+playerName+"|"+wins+"  |$"+balance+"  |"
+				+ "\n+--------------+----------+--------------+";
 		
 		return info;
 		
@@ -55,8 +62,18 @@ public class Player {
 	public void topPlayer()
 	{
 		
-		System.out.format( "|%2s              |%2d               %n", playerName, wins);
+		System.out.printf("%n      -PLAYER INFO-          "
+				+ "%n+=================+=================+"
+				+ "%n|NAME             |# WINS           |"
+				+ "%n+=================+=================+"
+				+ "%n|%s               |%d               |"
+				+ "%n+-----------------+-----------------+"
+				+ "%n|%s               |%d               |"
+				+ "%n+-----------------+-----------------+", playerName, wins, playerName, wins);
 		
 	}
-	
+	public String format() {
+		return playerName + "," + balance + "," + wins;
+	}
 }
+
