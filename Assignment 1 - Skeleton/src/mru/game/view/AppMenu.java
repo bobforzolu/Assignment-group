@@ -35,23 +35,27 @@ public class AppMenu {
 	}
 	
 	public String enterName() {
-		System.out.print("\nEnter name here: ");
-		String name = input.next().trim();
+		System.out.println("Enter name here: ");
+		String name = input.next();
 		return name;
-	}
-	
-	public void showPlayer(Player ply) {
-		if (ply != null)
-			System.out.println(ply);
-		else 
-			System.out.println("\nThat profile does not exist.");
 	}
 	public void plyInfo(Player ply)
 	{
+		if(ply != null)
+		{
 		System.out.print(ply);
+		}else {
+			System.out.print("the name u entered does not exist");
+
+		}
 	}
-	
-	
+	public void topPlayerMenu()
+	{
+		System.out.printf("%n      -PLAYER INFO-          "
+				+ "%n+=================+=================+"
+				+ "%n|NAME             |# WINS           |"
+				+ "%n+=================+=================+");
+	}
 	/**
 	 * This class will be used to show the menus and sub menus to the user
 	 * It also prompts the user for the inputs and validates them 

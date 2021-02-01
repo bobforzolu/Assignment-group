@@ -142,11 +142,13 @@ public class GameManager {
 		switch (choice) {
 		case 't':
 			topPlayer();
+			showMainMenu();
 			break;
 		case 'n':
 			String name = appMenu.enterName();
 			Player ply = findPlayer(name);
-			appMenu.showPlayer(ply);
+			appMenu.plyInfo(ply);
+			showMainMenu();
 			break;
 		case 'b':
 			showMainMenu();
@@ -159,49 +161,6 @@ public class GameManager {
 	
 	
 	
-	/**
-	 * finds the location of an item in the list
-	 * @param name name of the item
-	 * @return foundinfo item position
-	 */
-	private int search(String name)
-	{
-		// check if an item is in the list if it remains as one item is not in the list
-		int foundInfo = -1;
-		// current location in the list
-		int j = 0 ;
-		// list size
-		int dataSize;
-		// player class
-		Player player;
-		
-		boolean found = false;
-		
-		// list size
-		dataSize = players.size();
-		
-		while(j <= dataSize && !found)
-		{
-			// get the item in the list and stores in in the player class
-			player = players.get(j);
-		
-			// check if the inputed name matches the ones in the list
-			if(player.getName().equals(name))
-			{
-				// store the item in foundinfo
-				foundInfo = j;
-				found = true;
-				
-			}
-			j++;
-		}
-		return foundInfo;
-		
-	}
 	
 	
-	
-	
-	
-
 }

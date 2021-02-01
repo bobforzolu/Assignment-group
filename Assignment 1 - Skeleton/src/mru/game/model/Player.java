@@ -62,14 +62,9 @@ public class Player {
 	public void topPlayer()
 	{
 		
-		System.out.printf("%n      -PLAYER INFO-          "
-				+ "%n+=================+=================+"
-				+ "%n|NAME             |# WINS           |"
-				+ "%n+=================+=================+"
-				+ "%n|%s               |%d               |"
-				+ "%n+-----------------+-----------------+"
-				+ "%n|%s               |%d               |"
-				+ "%n+-----------------+-----------------+", playerName, wins, playerName, wins);
+		System.out.printf(
+				 "%n|%s                | %d               |"
+				+ "%n+-----------------+-----------------+%n", playerName, wins, playerName, wins);
 		
 	}
 	public String format() {
