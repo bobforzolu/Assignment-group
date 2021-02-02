@@ -32,7 +32,11 @@ public class GameManager {
 	
 	private int score = 0;
 	
-	
+	/**
+	 *@decription the game manager
+	 *@param none
+	 * @return none
+	 */
 	public GameManager() throws FileNotFoundException {
 		players = new ArrayList<Player>();
 		appMenu = new AppMenu();
@@ -45,6 +49,11 @@ public class GameManager {
 		
 	}
 	
+	/**
+	 *@decription displays the main menu
+	 *@param none
+	 * @return none
+	 */
 	private void showMainMenu() throws FileNotFoundException { 
 		
 		char choice = appMenu.mainMenu();
@@ -64,7 +73,11 @@ public class GameManager {
 			showMainMenu();
 		}	
 	}
-	
+	/**
+	 *@decription load user data into the game
+	 *@param none
+	 * @return none
+	 */
 	private void loadFile() throws FileNotFoundException {
 		File ci = new File(FILE_PATH);
 		
@@ -89,7 +102,11 @@ public class GameManager {
 		}
 		
 	}
-
+	/**
+	 *@decription prints out the name of users with the highest win
+	 *@param none
+	 * @return none
+	 */
 	public void topPlayer()
 	{
 		
@@ -100,6 +117,7 @@ public class GameManager {
 				score = p.getWin();
 			} 
 		}
+		appMenu.topPlayerMenu();
 		
 		for(Player p: players)
 		{
@@ -110,6 +128,11 @@ public class GameManager {
 		}
 	}
 	
+	/**
+	 * finds the location of the requested player
+	 * @param name name of the player
+	 * @return ply location of the player in the list
+	 */
 	private Player findPlayer(String name) {
 		Player ply = null;
 		
@@ -122,6 +145,10 @@ public class GameManager {
 		}
 		return ply;
 	}
+	/**
+	 * @decription : saves player data
+	 * @throws FileNotFoundException
+	 */
 	private void saveFile() throws FileNotFoundException {
 		File ci = new File(FILE_PATH);
 		PrintWriter pw = new PrintWriter(ci);
@@ -134,7 +161,11 @@ public class GameManager {
 		pw.close();
 	}
 	
-	
+	/**
+	 *@decription saves the player data
+	 *@param none
+	 * @return none
+	 */
 	public void playerInfoMenu() throws FileNotFoundException
 	{
 		char choice = appMenu.subMenu();

@@ -4,15 +4,26 @@ import java.util.Scanner;
 
 import mru.game.model.Player;
 
+
+/**
+	 * This class will be used to show the menus and sub menus to the user
+	 * It also prompts the user for the inputs and validates them 
+	 */
 public class AppMenu {
 	
 	Scanner input;
-	
+	/**
+	 * constracter for the app menu
+	 */
 	public AppMenu() {
 		input = new Scanner(System.in);
 		
 	}
 	
+	/**
+	 * the main menu contains options
+	 * @return choice allow you to select an option
+	 */
 	public char mainMenu() {
 		System.out.print("\nSelect one of these options: \n"
 				+ "\n"
@@ -24,6 +35,10 @@ public class AppMenu {
 		char choice = input.next().toLowerCase().charAt(0);
 		return choice;
 	}
+	/**
+	 * the sub menu contains options
+	 * @return choice allow you to select an option
+	 */
 	public char subMenu() {
 		System.out.print("\nSelect one of these options;\n"
 				+ "\n        (T) Top player (Most number of wins)"
@@ -34,11 +49,20 @@ public class AppMenu {
 		return choice;
 	}
 	
+	/**
+	 * askes users for their name
+	 * @return name the inputed player name
+	 */
 	public String enterName() {
 		System.out.println("Enter name here: ");
 		String name = input.next();
 		return name;
 	}
+	
+	/**
+	 *displayes the desired player info menu
+	 * @param
+	 */
 	public void plyInfo(Player ply)
 	{
 		if(ply != null)
@@ -56,10 +80,7 @@ public class AppMenu {
 				+ "%n|NAME             |# WINS           |"
 				+ "%n+=================+=================+");
 	}
-	/**
-	 * This class will be used to show the menus and sub menus to the user
-	 * It also prompts the user for the inputs and validates them 
-	 */
+	
 	
 	
 }
