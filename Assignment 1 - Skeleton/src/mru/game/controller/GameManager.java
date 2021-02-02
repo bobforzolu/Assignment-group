@@ -28,6 +28,7 @@ public class GameManager {
 	private final String FILE_PATH = "res/CasinoInfo.txt";
 	ArrayList<Player> players;
 	AppMenu appMenu;
+	PuntoBancoGame game;
 	 
 	
 	private int score = 0;
@@ -46,7 +47,23 @@ public class GameManager {
 		showMainMenu();
 	}
 	private void playGame() {
+		String name = appMenu.enterName();
+		Player p = findPlayer(name);
 		
+		//new player seting
+		double initialBal = 100;
+		int inintalWin = 0;
+		
+		findPlayer(name);
+		
+		if(p == null)
+		{
+			players.add(new Player(name,initialBal,inintalWin));
+			
+			// greet the new player
+		}
+			// welcome the returning player
+		game = new PuntoBancoGame();
 	}
 	
 	/**
