@@ -74,7 +74,6 @@ public class GameManager {
 			appMenu.betMenu();
 		}
 
-		game = new PuntoBancoGame();
 	}
 	
 	/**

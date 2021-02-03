@@ -91,5 +91,10 @@ public class AppMenu {
 		return choice;
 	}
 	
+	public double placeBet() {
+		System.out.print("How much would you like to bet this round? ");
+		double choice = input.nextInt();
+		return choice;
+	}
 }
 
