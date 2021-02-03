@@ -63,6 +63,7 @@ public class GameManager {
 			// greet the new player
 		}
 			// welcome the returning player
+		
 		game = new PuntoBancoGame();
 	}
 	
