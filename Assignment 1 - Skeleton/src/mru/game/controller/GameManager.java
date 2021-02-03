@@ -60,9 +60,20 @@ public class GameManager {
 		{
 			players.add(new Player(name,initialBal,inintalWin));
 			
+			System.out.print("\n********************************************************************"
+							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
+							+ "\n********************************************************************");
+			
+			appMenu.betMenu();
 			// greet the new player
-		}
+		} else {
 			// welcome the returning player
+			System.out.print("\n********************************************************************"
+							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
+							+ "\n********************************************************************");
+			appMenu.betMenu();
+		}
+
 		game = new PuntoBancoGame();
 	}
 	

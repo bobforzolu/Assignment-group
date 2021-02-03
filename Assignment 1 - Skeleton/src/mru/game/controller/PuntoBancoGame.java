@@ -9,6 +9,7 @@ public class PuntoBancoGame {
 	 * See the instructions for the game rules
 	 */
 	CardDeck cardDeck;
+	
 	public PuntoBancoGame() 
 	{
 		 cardDeck = new CardDeck();

@@ -25,7 +25,7 @@ public class AppMenu {
 	 * @return choice allow you to select an option
 	 */
 	public char mainMenu() {
-		System.out.print("\nSelect one of these options: \n"
+		System.out.print("\n\nSelect one of these options: \n"
 				+ "\n"
 				+ "       (P) Play game\n"
 				+ "       (S) Search\n"
@@ -54,7 +54,7 @@ public class AppMenu {
 	 * @return name the inputed player name
 	 */
 	public String enterName() {
-		System.out.println("Enter name here: ");
+		System.out.print("\nEnter name here: ");
 		String name = input.next();
 		return name;
 	}
@@ -81,7 +81,15 @@ public class AppMenu {
 				+ "%n+=================+=================+");
 	}
 	
-	
+	public char betMenu() {
+		System.out.print("\n\nWho do you want to bet on?\n\n"
+				+ "            (P) Player Wins\n"
+				+ "            (B) Banker Wins\n"
+				+ "            (T) Tie Game\n\n"
+				+ "Enter your choice: ");
+		char choice = input.next().toLowerCase().charAt(0);
+		return choice;
+	}
 	
 }
 

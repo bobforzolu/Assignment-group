@@ -111,7 +111,7 @@ public class Player {
 		
 		System.out.printf(
 				 "%n|%s                 %d               |"
-				+ "%n+-----------------+------------------+", playerName, wins);
+				+ "%n+-----------------+-----------------+", playerName, wins);
 		
 	}
 	/**
@@ -121,6 +121,10 @@ public class Player {
 	 */
 	public String format() {
 		return playerName + "," + balance + "," + wins;
+	}
+	
+	public void newPlayer() {
+		System.out.printf("Welcome" + playerName + "Your initial balance is: " + balance + "$");
 	}
 }
 
