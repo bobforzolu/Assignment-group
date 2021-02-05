@@ -55,6 +55,9 @@ public class GameManager {
 		double initialBal = 100;
 		int inintalWin = 0;
 		
+		// balance
+		
+		
 		
 		if(p == null)
 		{
@@ -71,12 +74,39 @@ public class GameManager {
 							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
 							+ "\n********************************************************************");
 		}
-		
 		game = new PuntoBancoGame();
+
+		
 		boolean ifHasWon = game.launchGame();
-		if(ifHasWon)
+		double bettamount = game.getBett();
+		Player player ;
+		if(ifHasWon == true)
 		{
 			
+			for(Player ply: players)
+			{
+				if(ply.getName().equals(name))
+				{
+					int win = ply.getWin();
+					double money = ply.getBalance();
+					ply.setBalance(money =+ bettamount);
+					ply.setWin(win =+ 1);
+				}
+			}
+		}
+		else
+		{
+			for(Player ply: players)
+			{
+				if(ply.getName().equals(name))
+				{
+					int win = ply.getWin();
+					double money = ply.getBalance();
+					ply.setBalance(money =- bettamount);
+					
+				}
+			}
+
 		}
 		
 	}
