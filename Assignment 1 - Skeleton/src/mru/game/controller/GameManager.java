@@ -47,7 +47,7 @@ public class GameManager {
 		showMainMenu();
 	}
 	
-	private void playGame()  {
+	private void playGame() throws FileNotFoundException  {
 		String name = appMenu.enterName();
 		Player p = findPlayer(name);
 		
@@ -89,8 +89,8 @@ public class GameManager {
 				{
 					int win = ply.getWin();
 					double money = ply.getBalance();
-					ply.setBalance(money =+ bettamount);
-					ply.setWin(win =+ 1);
+					ply.setBalance(money + bettamount);
+					ply.setWin(win + 1);
 				}
 			}
 		}
@@ -102,7 +102,13 @@ public class GameManager {
 				{
 					int win = ply.getWin();
 					double money = ply.getBalance();
-					ply.setBalance(money =- bettamount);
+					ply.setBalance(money - bettamount);
+					if(money <= 0)
+					{
+						saveFile();
+					}
+					
+					
 					
 				}
 			}
@@ -251,33 +257,6 @@ public class GameManager {
 		default:
 			System.out.println("\nError: Please try again.");
 			playerInfoMenu();
-		}
-	}
-	
-	public void greetPlayer(String name) {
-		Player p = findPlayer(name);
-		
-		//new player seting
-		double initialBal = 100;
-		int inintalWin = 0;
-		
-		
-		if(p.equals(null))
-		{
-			players.add(new Player(name,initialBal,inintalWin));
-			
-			System.out.print("\n********************************************************************"
-							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
-							+ "\n********************************************************************");
-			
-			
-			// greet the new player
-		} else {
-			// welcome the returning player
-			System.out.print("\n********************************************************************"
-							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
-							+ "\n********************************************************************");
-			
 		}
 	}
 	

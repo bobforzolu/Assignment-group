@@ -50,7 +50,7 @@ public class PuntoBancoGame {
 		char playerBet = 'p';
 		char brokerBet = 'b';
 		char tie = 't';
-		double bettAmount = appMenu.placeBet();
+		bettAmount = appMenu.placeBet();
 		
 		boolean hasWon = false;
 			
