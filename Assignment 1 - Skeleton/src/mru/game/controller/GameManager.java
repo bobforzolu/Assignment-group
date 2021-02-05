@@ -46,7 +46,8 @@ public class GameManager {
 		
 		showMainMenu();
 	}
-	private void playGame() {
+	
+	private void playGame()  {
 		String name = appMenu.enterName();
 		Player p = findPlayer(name);
 		
@@ -54,7 +55,6 @@ public class GameManager {
 		double initialBal = 100;
 		int inintalWin = 0;
 		
-		findPlayer(name);
 		
 		if(p == null)
 		{
@@ -64,16 +64,21 @@ public class GameManager {
 							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
 							+ "\n********************************************************************");
 			
-			appMenu.betMenu();
 			// greet the new player
 		} else {
 			// welcome the returning player
 			System.out.print("\n********************************************************************"
 							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
 							+ "\n********************************************************************");
-			appMenu.betMenu();
 		}
-
+		
+		game = new PuntoBancoGame();
+		boolean ifHasWon = game.launchGame();
+		if(ifHasWon)
+		{
+			
+		}
+		
 	}
 	
 	/**
@@ -88,6 +93,8 @@ public class GameManager {
 		switch (choice) {
 		case 'p':
 			playGame();
+			showMainMenu();
+
 			break;
 		case 's':
 			playerInfoMenu();
@@ -160,7 +167,7 @@ public class GameManager {
 	 * @param name name of the player
 	 * @return ply location of the player in the list
 	 */
-	private Player findPlayer(String name) {
+	public Player findPlayer(String name) {
 		Player ply = null;
 		
 		for(Player p: players) {
@@ -217,6 +224,32 @@ public class GameManager {
 		}
 	}
 	
+	public void greetPlayer(String name) {
+		Player p = findPlayer(name);
+		
+		//new player seting
+		double initialBal = 100;
+		int inintalWin = 0;
+		
+		
+		if(p.equals(null))
+		{
+			players.add(new Player(name,initialBal,inintalWin));
+			
+			System.out.print("\n********************************************************************"
+							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
+							+ "\n********************************************************************");
+			
+			
+			// greet the new player
+		} else {
+			// welcome the returning player
+			System.out.print("\n********************************************************************"
+							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
+							+ "\n********************************************************************");
+			
+		}
+	}
 	
 	
 	

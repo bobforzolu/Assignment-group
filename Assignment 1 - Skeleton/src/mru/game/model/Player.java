@@ -35,6 +35,14 @@ public class Player {
 		
 	}
 	/**
+	 * player constructer
+	 */
+	public Player()
+	{
+		
+		
+	}
+	/**
 	 * Assigns a ballence to the player
 	 * @param bal the players ballance 
 	 */
