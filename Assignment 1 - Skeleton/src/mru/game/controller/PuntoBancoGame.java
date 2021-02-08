@@ -19,97 +19,127 @@ public class PuntoBancoGame {
 	AppMenu appMenu;
 	Player player;
 	GameManager gm;
+	Scanner input;
 	
-	private double bettAmount;
+	private int playerScore;
+	private int bankerScore;
+	private double betAmount;
 	
-	
-	public double getBett()
-	{
-		return bettAmount;
-	}
 	
 	public PuntoBancoGame() 
 	{
 		 cardDeck = new CardDeck();
 		 rdm = new Random();
 		 appMenu = new AppMenu();
-		 
 		 player = new Player();
+		 input = new Scanner(System.in);
 		 
 	}
 	
-	public boolean launchGame() 
+	public boolean launchGame() throws FileNotFoundException 
 	{
-		// score
-		int playerScore = 0;
-		int brokerScore = 0;
-		int tieScore = 0;
 		
 		// players betting option
 		char choice = appMenu.betMenu();
 		char playerBet = 'p';
-		char brokerBet = 'b';
+		char bankerBet = 'b';
 		char tie = 't';
-		bettAmount = appMenu.placeBet();
+		betAmount = appMenu.placeBet();
 		
 		boolean hasWon = false;
 			
-		for(int i=0; i<=2; i++)
-		{
+		Card playerHand = cardDeck.getDeck().remove(0);
+		Card playerHand2 = cardDeck.getDeck().remove(0);
+		Card playerHand3 = cardDeck.getDeck().remove(0);
+		
+		Card bankerHand = cardDeck.getDeck().remove(0);
+		Card bankerHand2 = cardDeck.getDeck().remove(0);
+		Card bankerHand3 = cardDeck.getDeck().remove(0);
+		
+		playerScore = playerHand.getRank() + playerHand2.getRank();
+		bankerScore = bankerHand.getRank() + bankerHand2.getRank();
 			
-			int playercard = rdm.nextInt(12) +1;
-			int bankercard = rdm.nextInt(12) +1;
-			
-			
-			Card playerHand = cardDeck.getDeck().get(playercard);
-			Card bankerHand = cardDeck.getDeck().get(bankercard);
-			
-			// we need a menu 
-			System.out.println(bankerHand);
-			System.out.println(playerHand);
-	
-			if(playerHand.getRank() > bankerHand.getRank())
-			{
-				playerScore++;
-				System.out.println("player: " + playerScore);
-
-				if(playerScore == 2)	
-				{
-					if(choice == playerBet)
-					{
-						hasWon = true;
-					}
-					break;
-				}
-			}else if(playerHand.getRank() < bankerHand.getRank())
-			{
-				brokerScore++;
-				System.out.println("broker: "+brokerScore);
-
-				if(brokerScore == 2)
-				{
-					if(choice == brokerBet)
-					{	
-						hasWon = true;
-					}
-					break;
-				}
-			}else 
-			{
-				tieScore ++;
-				if(choice == tie)
-				{	
-						System.out.println("tie: "+tieScore);
-
-						hasWon = true;
-				}
-					
-				
-			}
+		if (playerScore == 8 || playerScore == 9 || bankerScore == 8 || bankerScore == 9) {
+			System.out.printf("%n               -PUNTO BANCO-            %n"
+				    + "+====================+===================+%n"
+				    + "|PLAYER              |BANKER             |%n"
+				    + "+====================+===================+%n"
+				    + "|%s                  |%s                 |%n"
+				    + "+--------------------+-------------------+%n"
+				    + "|%s                  |%s                 |%n"
+				    + "+--------------------+-------------------+%n"
+				    + "|                    |                   |%n"
+				    + "+--------------------+-------------------+%n"
+				    + "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n"
+				    + "+====================+===================+%n", playerHand, bankerHand, playerHand2, bankerHand2, playerScore, bankerScore);
 		}
-		return hasWon;
+		
+		// we need a menu 
+	
+
+		if(playerScore > bankerScore && choice == playerBet) {
+			hasWon = true;
+			winMsg(betAmount);
+			promptContinue();
+			launchGame();
+		} else if (playerScore > bankerScore && choice != playerBet) {
+			hasWon = false;
+			loseMsg(betAmount);
+			promptContinue();
+		} else if(playerScore < bankerScore && choice == bankerBet) {
+			hasWon = true;
+			winMsg(betAmount);
+			promptContinue();
+		} else if (playerScore < bankerScore && choice != bankerBet) {
+			hasWon = false;
+			loseMsg(betAmount);
+			promptContinue();
+		} else if (playerScore == bankerScore && choice == tie){
+			hasWon = true;
+			winMsg(betAmount * 5);
+			promptContinue();
+		} else {
+			hasWon = false;
+			loseMsg(betAmount);
+			promptContinue();
+		}
+	
+	return hasWon;
+}
+	
+	
+	public double getBet()
+	{
+		return betAmount;
 	}
 	
+	private void winMsg(double betAmount) {
+		System.out.print("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
+				   	   + "$     YOU WIN "+betAmount+"!       $\n"
+				   	   + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+	}
+	
+	private void loseMsg(double betAmount) {
+		System.out.print("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
+					    + "$     YOU LOSE "+betAmount+"!     $\n"
+			   	        + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
+	}
+	//System.out.printf("|%s                 |%s                  |%n"
+	        //+ "+-------------------+--------------------+%n",playerHand, bankerHand);
+	public boolean promptContinue() throws FileNotFoundException {
+		
+		boolean play = false;
+		
+		System.out.print("\nDo you want to play again (Y/N)? ");
+		char choice = input.next().toLowerCase().charAt(0);
+		
+		if (choice == 'y') {
+			play = true;
+		} else if (choice == 'n') {
+			gm.showMainMenu();
+		}
+		return play;
 	
 
+	}
 }
