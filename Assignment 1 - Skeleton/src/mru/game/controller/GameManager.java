@@ -103,8 +103,9 @@ public class GameManager {
 					int win = ply.getWin();
 					double money = ply.getBalance();
 					ply.setBalance(money - bettamount);
-					if(money <= 0)
+					if(ply.getBalance() <= 0)
 					{
+						System.out.print("your Ballance has ran out leaving the game");
 						saveFile();
 					}
 					
@@ -129,7 +130,6 @@ public class GameManager {
 		switch (choice) {
 		case 'p':
 			playGame();
-			showMainMenu();
 
 			break;
 		case 's':

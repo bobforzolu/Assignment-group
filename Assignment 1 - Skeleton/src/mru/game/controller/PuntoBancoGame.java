@@ -94,16 +94,17 @@ public class PuntoBancoGame {
 					}
 					break;
 				}
-			}else {
+			}else 
+			{
 				tieScore ++;
-				if(playerScore == 1 && tieScore == 1 && brokerScore == 1)
-				{
-					if(choice == tie)
-					{	
+				if(choice == tie)
+				{	
+						System.out.println("tie: "+tieScore);
+
 						hasWon = true;
-					}
-					
 				}
+					
+				
 			}
 		}
 		return hasWon;
