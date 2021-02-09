@@ -20,6 +20,8 @@ public class PuntoBancoGame {
 	Player player;
 	GameManager gm;
 	Scanner input;
+	Card playerHand;
+	Card bankerHand;
 	
 	private int playerScore;
 	private int bankerScore;
@@ -47,54 +49,74 @@ public class PuntoBancoGame {
 		betAmount = appMenu.placeBet();
 		
 		boolean hasWon = false;
-			
-		Card playerHand = cardDeck.getDeck().remove(0);
-		Card playerHand2 = cardDeck.getDeck().remove(0);
-		Card playerHand3 = cardDeck.getDeck().remove(0);
 		
-		Card bankerHand = cardDeck.getDeck().remove(0);
-		Card bankerHand2 = cardDeck.getDeck().remove(0);
-		Card bankerHand3 = cardDeck.getDeck().remove(0);
 		
-		playerScore = playerHand.getRank() + playerHand2.getRank();
-		bankerScore = bankerHand.getRank() + bankerHand2.getRank();
+		System.out.printf("%n               -PUNTO BANCO-            %n"
+			    		+ "+====================+===================+%n"
+			    		+ "|PLAYER              |BANKER             |%n"
+			    		+ "+====================+===================+%n");
+		{
+			playerHand = cardDeck.getDeck().remove(0);
+			bankerHand = cardDeck.getDeck().remove(0);
 			
-		if (playerScore == 8 || playerScore == 9 || bankerScore == 8 || bankerScore == 9) {
-			System.out.printf("%n               -PUNTO BANCO-            %n"
-				    + "+====================+===================+%n"
-				    + "|PLAYER              |BANKER             |%n"
-				    + "+====================+===================+%n"
-				    + "|%s                  |%s                 |%n"
-				    + "+--------------------+-------------------+%n"
-				    + "|%s                  |%s                 |%n"
-				    + "+--------------------+-------------------+%n"
-				    + "|                    |                   |%n"
-				    + "+--------------------+-------------------+%n"
-				    + "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n"
-				    + "+====================+===================+%n", playerHand, bankerHand, playerHand2, bankerHand2, playerScore, bankerScore);
+			
+			playerScore = playerHand.getRank() + playerHand.getRank(); 
+			bankerScore = bankerHand.getRank() + bankerHand.getRank();
+			
+			
+			for (int i = 1; i <= 2; i ++) {
+				System.out.printf("|%s                  |%s                 |%n"
+								+ "+--------------------+-------------------+%n", playerHand, bankerHand);
+			}
+			if (truePlayerScore(playerScore) == 8 || truePlayerScore(playerScore) == 9 || trueBankerScore(bankerScore) == 8 || trueBankerScore(bankerScore) == 9) {
+				
+				System.out.printf("|                    |                   |%n"
+								+ "+--------------------+-------------------+%n"
+								+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+								+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			} else if (truePlayerScore(playerScore) <= 5) {
+				playerScore = playerScore + playerHand.getRank(); 
+				bankerScore = bankerScore + bankerHand.getRank();
+				System.out.printf("|%s                  |%s                 |%n"
+								+ "+--------------------+-------------------+%n"
+								+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+								+ "+====================+===================+%n", playerHand, bankerHand, truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			} else if (truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7 && trueBankerScore(bankerScore) <= 5) {
+				playerScore = playerHand.getRank() + playerHand.getRank();
+				bankerScore = bankerScore + bankerHand.getRank();
+				System.out.printf("|                    |%s                 |%n"
+								+ "+--------------------+-------------------+%n"
+								+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+								+ "+====================+===================+%n", bankerHand, truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			} else if (truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7 && trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7) {
+				System.out.printf("|                    |                   |%n"
+								+ "+--------------------+-------------------+%n"
+								+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+								+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			}
 		}
+		
 		
 		// we need a menu 
 	
 
-		if(playerScore > bankerScore && choice == playerBet) {
+		if(truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice == playerBet) {
 			hasWon = true;
 			winMsg(betAmount);
 			promptContinue();
-			launchGame();
-		} else if (playerScore > bankerScore && choice != playerBet) {
+		} else if (truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice != playerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
 			promptContinue();
-		} else if(playerScore < bankerScore && choice == bankerBet) {
+		} else if(truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice == bankerBet) {
 			hasWon = true;
 			winMsg(betAmount);
 			promptContinue();
-		} else if (playerScore < bankerScore && choice != bankerBet) {
+		} else if (truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice != bankerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
 			promptContinue();
-		} else if (playerScore == bankerScore && choice == tie){
+		} else if (truePlayerScore(playerScore) == trueBankerScore(bankerScore) && choice == tie){
 			hasWon = true;
 			winMsg(betAmount * 5);
 			promptContinue();
@@ -103,29 +125,66 @@ public class PuntoBancoGame {
 			loseMsg(betAmount);
 			promptContinue();
 		}
+		return hasWon;
+	}
 	
-	return hasWon;
-}
-	
-	
+	/**
+	 * Gets the gambler's bet.
+	 * @return Gamblers bet amount.
+	 */
 	public double getBet()
 	{
 		return betAmount;
 	}
-	
+	/**
+	 * Displays a winning message if the gambler bets correctly.
+	 * @param betAmount
+	 */
 	private void winMsg(double betAmount) {
 		System.out.print("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
 				   	   + "$     YOU WIN "+betAmount+"!       $\n"
 				   	   + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	}
-	
+	/**
+	 * Displays a losing message if the gambler bets incorrectly.
+	 * @param betAmount
+	 */
 	private void loseMsg(double betAmount) {
 		System.out.print("\n$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n"
 					    + "$     YOU LOSE "+betAmount+"!     $\n"
 			   	        + "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n");
 	}
-	//System.out.printf("|%s                 |%s                  |%n"
-	        //+ "+-------------------+--------------------+%n",playerHand, bankerHand);
+	/**
+	 * Sums the players score to modulo 10.
+	 * @param newPlayerScore
+	 * @return Players score in modulo 10.
+	 */
+	private int truePlayerScore(int newPlayerScore) {
+		playerScore = newPlayerScore;
+		if (newPlayerScore >= 10) {
+			newPlayerScore = newPlayerScore - 10;
+			return newPlayerScore;
+		} else {
+			return newPlayerScore;
+		}
+	}
+	/**
+	 * Sums the bankers score to modulo 10. 
+	 * @param newBankerScore
+	 * @return Bankers score in modulo 10.
+	 */
+	private int trueBankerScore(int newBankerScore) {
+		bankerScore = newBankerScore;
+		if (newBankerScore >= 10) {
+			newBankerScore = newBankerScore - 10;
+			return newBankerScore;
+		} else {
+			return newBankerScore;
+		}
+	}
+	/**
+	 * Asks the player whether they wants to continue playing the game.
+	 */
 	public boolean promptContinue() throws FileNotFoundException {
 		
 		boolean play = false;
@@ -135,11 +194,13 @@ public class PuntoBancoGame {
 		
 		if (choice == 'y') {
 			play = true;
+			launchGame();
 		} else if (choice == 'n') {
+			play = false;
 			gm.showMainMenu();
 		}
 		return play;
-	
-
 	}
+	
+	
 }

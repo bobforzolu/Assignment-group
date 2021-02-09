@@ -118,7 +118,7 @@ public class Player {
 	{
 		
 		System.out.printf(
-				 "%n|%s                 %d               |"
+				 "%n|%s                |%d               |"
 				+ "%n+-----------------+-----------------+", playerName, wins);
 		
 	}

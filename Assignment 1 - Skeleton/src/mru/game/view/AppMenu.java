@@ -92,7 +92,7 @@ public class AppMenu {
 	}
 	
 	public double placeBet() {
-		System.out.print("How much would you like to bet this round? ");
+		System.out.print("\nHow much would you like to bet this round? ");
 		double choice = input.nextInt();
 		return choice;
 	}
