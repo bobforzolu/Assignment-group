@@ -56,20 +56,18 @@ public class PuntoBancoGame {
 			    		+ "|PLAYER              |BANKER             |%n"
 			    		+ "+====================+===================+%n");
 		{
-			playerHand = cardDeck.getDeck().remove(0);
-			bankerHand = cardDeck.getDeck().remove(0);
 			
 			
-			playerScore = playerHand.getRank() + playerHand.getRank(); 
-			bankerScore = bankerHand.getRank() + bankerHand.getRank();
-			
-			
-			for (int i = 1; i <= 2; i ++) {
+			for (int i = 0; i <= 1; i ++) {
+				playerHand = cardDeck.getDeck().remove(0);
+				bankerHand = cardDeck.getDeck().remove(0);
+				
 				System.out.printf("|%s                  |%s                 |%n"
 								+ "+--------------------+-------------------+%n", playerHand, bankerHand);
 			}
 			if (truePlayerScore(playerScore) == 8 || truePlayerScore(playerScore) == 9 || trueBankerScore(bankerScore) == 8 || trueBankerScore(bankerScore) == 9) {
-				
+				playerScore = playerScore + playerHand.getRank(); 
+				bankerScore = playerScore + bankerHand.getRank();
 				System.out.printf("|                    |                   |%n"
 								+ "+--------------------+-------------------+%n"
 								+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
