@@ -48,48 +48,48 @@ public class GameManager {
 	}
 	
 	private void playGame() throws FileNotFoundException  {
-		String name = appMenu.enterName();
-		Player p = findPlayer(name);
-		Scanner prompt = new Scanner(System.in);
 		
-		//new player seting
-		double initialBal = 100;
-		int inintalWin = 0;
+		String name;
 		
-		// balance
+		// the start scrren to get the players name
+		name = greetPlayer();
 		
-		
-		
-		if(p == null)
-		{
-			players.add(new Player(name,initialBal,inintalWin));
-			
-			System.out.print("\n********************************************************************"
-							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
-							+ "\n********************************************************************");
-			
-			// greet the new player
-		} else {
-			// welcome the returning player
-			System.out.print("\n********************************************************************"
-							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
-							+ "\n********************************************************************");
-		}
+		// start the game and get the neacesery information
 		game = new PuntoBancoGame();
-
-		boolean keepPlaying = true;
-		double betamount = 1;
 		
-		while(keepPlaying && betamount <= 0)
+		
+		// coditions to update game information and to loop the game
+		boolean keepPlaying = true;
+		double ballance = getPlayerBallance(name);
+		double betAmount;
+		
+		
+		
+		// the game
+		while(keepPlaying && ballance > 0)
 		{
-			
-			boolean ifHasWon = game.launchGame();
-			betamount = game.getBet();
-			endResult(name,ifHasWon, betamount);
-			keepPlaying = continueGame();
+			boolean ifHasWon = game.launchGame(ballance);
+			betAmount = game.getBet();
+			endResult(name,ifHasWon, betAmount);
+			ballance = getPlayerBallance(name);
+
+			if(ballance >= 0) 
+			{
+				keepPlaying = game.promptContinue();
+			}
+		}
+		
+		// bring back the player to the Main menu after the game is done
+		if( ballance <= 0)
+		{
+			System.out.println("\nyour ballance is less or equal to zero u can no longer play");
+			System.out.println("going back to the Main Menu");
 			
 		}
 		showMainMenu();	
+			
+
+		
 
 	}
 	
@@ -234,7 +234,15 @@ public class GameManager {
 			playerInfoMenu();
 		}
 	}
-	public void endResult(String name , boolean ifHasWon, double betAmount) throws FileNotFoundException
+	
+	/** 
+	 *  updates the players ballance and wins
+	 * @param name of the player
+	 * @param ifHasWon checks weather the player has won or lost
+	 * @param betAmount amount the plaer betted
+	 * @throws FileNotFoundException
+	 */
+	public void endResult(String name , boolean ifHasWon, double betAmount) 
 	{
 		if(ifHasWon == true)
 		{
@@ -257,16 +265,9 @@ public class GameManager {
 			{
 				if(ply.getName().equals(name))
 				{
-					int win = ply.getWin();
+					
 					double money = ply.getBalance();
-					ply.setBalance(money - betAmount);
-					
-					if(ply.getBalance() <= 0)
-					{
-						System.out.print("your Balance has ran out leaving the game");
-						saveFile();
-					}
-					
+					ply.setBalance(money - betAmount);		
 				}			
 			}
 			
@@ -275,15 +276,58 @@ public class GameManager {
 		
 	}
 	
-	private boolean continueGame() throws FileNotFoundException
+	
+	/**
+	 * Welcome screen to greet the player when he starts the game
+	 * @return name the name of the player
+	 */
+	public String greetPlayer()
 	{
-		boolean playAgain = true ;
+		String name = appMenu.enterName();
+		Player p = findPlayer(name);
 		
-	    playAgain = game.promptContinue();
-	    
+		//new player seting
+		double initialBal = 100;
+		int inintalWin = 0;
+		
+		// balance
 		
 		
-		return playAgain;
+		
+		if(p == null)
+		{
+			players.add(new Player(name,initialBal,inintalWin));
+			
+			System.out.print("\n********************************************************************"
+							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
+							+ "\n********************************************************************");
+			
+			// greet the new player
+		} else {
+			// welcome the returning player
+			System.out.print("\n********************************************************************"
+							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
+							+ "\n********************************************************************");
+		}
+		return name;
+	}
+	
+	/**
+	 * gets the current ballance of the player
+	 * @param name of the player
+	 * @return ballance players ballance
+	 */
+	public double getPlayerBallance(String name)
+	{
+		double ballance = 0;
+		for(Player p: players) {
+			if(p.getName().equals(name))
+			{
+				ballance = p.getBalance();
+			}
+		
+		}
+		return ballance;
 	}
 	
 }

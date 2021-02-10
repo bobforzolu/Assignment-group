@@ -18,7 +18,6 @@ public class PuntoBancoGame {
 	Random rdm;
 	AppMenu appMenu;
 	Player player;
-	GameManager gm;
 	Scanner input;
 	Card playerHand;
 	Card bankerHand;
@@ -28,7 +27,7 @@ public class PuntoBancoGame {
 	private double betAmount;
 	
 	
-	public PuntoBancoGame() 
+	public PuntoBancoGame() throws FileNotFoundException 
 	{
 		 cardDeck = new CardDeck();
 		 rdm = new Random();
@@ -38,7 +37,7 @@ public class PuntoBancoGame {
 		 
 	}
 	
-	public boolean launchGame() throws FileNotFoundException 
+	public boolean launchGame(double myBallance) throws FileNotFoundException 
 	{
 		
 		// players betting option
@@ -46,9 +45,9 @@ public class PuntoBancoGame {
 		char playerBet = 'p';
 		char bankerBet = 'b';
 		char tie = 't';
-		betAmount = appMenu.placeBet();
-		
+		ballanceCheck(myBallance);
 		boolean hasWon = false;
+		
 		
 		
 		System.out.printf("%n               -PUNTO BANCO-            %n"
@@ -137,17 +136,13 @@ public class PuntoBancoGame {
 			
 		}
 		
-		if(cardDeck.getDeck().size() <= 0)
-		{	
-			System.out.print("shuffeling the cards");
-			cardDeck = new CardDeck();
+			
+		
+			
 			return hasWon;
 			
 			
-		}else
-		{
-			return hasWon;
-		}
+		
 		
 	}
 	
@@ -222,6 +217,27 @@ public class PuntoBancoGame {
 			play = false;
 		}
 		return play;
+	}
+	
+	/**
+	 * makes sure the betamount is less then the player balance
+	 * @param ballance players ballance
+	 * @return betAmount the amount the player wants to bett on
+	 */
+	public double ballanceCheck (double ballance)
+	{
+		betAmount = appMenu.placeBet();
+		
+		while(betAmount > ballance || betAmount < 0)
+		{
+			System.out.println("the amount you entered is greater than your ballance of $" + ballance);
+			System.out.println("bett an amount thats within the range of your ballance");
+
+			betAmount = appMenu.placeBet();
+
+		}
+		
+		return betAmount;
 	}
 	
 	
