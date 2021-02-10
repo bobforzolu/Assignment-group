@@ -79,42 +79,7 @@ public class GameManager {
 		
 		boolean ifHasWon = game.launchGame();
 		double betamount = game.getBet();
-		Player player ;
-		if(ifHasWon == true)
-		{
-			
-			for(Player ply: players)
-			{
-				if(ply.getName().equals(name))
-				{
-					int win = ply.getWin();
-					double money = ply.getBalance();
-					ply.setBalance(money + betamount);
-					ply.setWin(win + 1);
-				}
-			}
-		}
-		else
-		{
-			for(Player ply: players)
-			{
-				if(ply.getName().equals(name))
-				{
-					int win = ply.getWin();
-					double money = ply.getBalance();
-					ply.setBalance(money - betamount);
-					if(ply.getBalance() <= 0)
-					{
-						System.out.print("your Balance has ran out leaving the game");
-						saveFile();
-					}
-					
-					
-					
-				}
-			}
-
-		}
+		endResult(name,ifHasWon, betamount);
 		
 	}
 	
@@ -260,6 +225,49 @@ public class GameManager {
 		}
 	}
 	
+	private void endResult(String name , boolean ifHasWon, double betAmount) throws FileNotFoundException
+	{
+		
+		if(ifHasWon == true)
+		{
+			
+			for(Player ply: players)
+			{
+				if(ply.getName().equals(name))
+				{
+					int win = ply.getWin();
+					double money = ply.getBalance();
+					ply.setBalance(money + betAmount);
+					ply.setWin(win + 1);
+					game.promptContinue();
+				}
+			}
+		}
+		else
+		{
+			for(Player ply: players)
+			{
+				if(ply.getName().equals(name))
+				{
+					int win = ply.getWin();
+					double money = ply.getBalance();
+					ply.setBalance(money - betAmount);
+					if(ply.getBalance() <= 0)
+					{
+						System.out.print("your Balance has ran out leaving the game");
+						saveFile();
+					}else
+					{
+						game.promptContinue();
+					}
+					
+					
+					
+				}
+			}
+
+		}
+	}
 	
 	
 	

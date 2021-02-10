@@ -114,27 +114,27 @@ public class PuntoBancoGame {
 		if(truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice == playerBet) {
 			hasWon = true;
 			winMsg(betAmount);
-			promptContinue();
+			
 		} else if (truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice != playerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
-			promptContinue();
+			
 		} else if(truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice == bankerBet) {
 			hasWon = true;
 			winMsg(betAmount);
-			promptContinue();
+			
 		} else if (truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice != bankerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
-			promptContinue();
+		
 		} else if (truePlayerScore(playerScore) == trueBankerScore(bankerScore) && choice == tie){
 			hasWon = true;
 			winMsg(betAmount * 5);
-			promptContinue();
+		
 		} else {
 			hasWon = false;
 			loseMsg(betAmount);
-			promptContinue();
+			
 		}
 		return hasWon;
 	}
@@ -196,7 +196,7 @@ public class PuntoBancoGame {
 	/**
 	 * Asks the player whether they wants to continue playing the game.
 	 */
-	public boolean promptContinue() throws FileNotFoundException {
+	public void promptContinue() throws FileNotFoundException {
 		
 		boolean play = false;
 		
@@ -210,7 +210,7 @@ public class PuntoBancoGame {
 			play = false;
 			gm.showMainMenu();
 		}
-		return play;
+		
 	}
 	
 	
