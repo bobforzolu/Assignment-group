@@ -50,6 +50,7 @@ public class GameManager {
 	private void playGame() throws FileNotFoundException  {
 		String name = appMenu.enterName();
 		Player p = findPlayer(name);
+		Scanner prompt = new Scanner(System.in);
 		
 		//new player seting
 		double initialBal = 100;
@@ -76,11 +77,20 @@ public class GameManager {
 		}
 		game = new PuntoBancoGame();
 
+		boolean keepPlaying = true;
+		double betamount = 1;
 		
-		boolean ifHasWon = game.launchGame();
-		double betamount = game.getBet();
-		endResult(name,ifHasWon, betamount);
-		
+		while(keepPlaying && betamount <= 0)
+		{
+			
+			boolean ifHasWon = game.launchGame();
+			betamount = game.getBet();
+			endResult(name,ifHasWon, betamount);
+			keepPlaying = continueGame();
+			
+		}
+		showMainMenu();	
+
 	}
 	
 	/**
@@ -224,24 +234,22 @@ public class GameManager {
 			playerInfoMenu();
 		}
 	}
-	
-	private void endResult(String name , boolean ifHasWon, double betAmount) throws FileNotFoundException
+	public void endResult(String name , boolean ifHasWon, double betAmount) throws FileNotFoundException
 	{
-		
 		if(ifHasWon == true)
 		{
 			
 			for(Player ply: players)
 			{
 				if(ply.getName().equals(name))
-				{
-					int win = ply.getWin();
-					double money = ply.getBalance();
-					ply.setBalance(money + betAmount);
-					ply.setWin(win + 1);
-					game.promptContinue();
-				}
+					{
+						int win = ply.getWin();
+						double money = ply.getBalance();
+						ply.setBalance(money + betAmount);
+						ply.setWin(win + 1);
+					}
 			}
+
 		}
 		else
 		{
@@ -252,23 +260,30 @@ public class GameManager {
 					int win = ply.getWin();
 					double money = ply.getBalance();
 					ply.setBalance(money - betAmount);
+					
 					if(ply.getBalance() <= 0)
 					{
 						System.out.print("your Balance has ran out leaving the game");
 						saveFile();
-					}else
-					{
-						game.promptContinue();
 					}
 					
-					
-					
-				}
+				}			
 			}
-
+			
 		}
+
+		
 	}
 	
-	
+	private boolean continueGame() throws FileNotFoundException
+	{
+		boolean playAgain = true ;
+		
+	    playAgain = game.promptContinue();
+	    
+		
+		
+		return playAgain;
+	}
 	
 }

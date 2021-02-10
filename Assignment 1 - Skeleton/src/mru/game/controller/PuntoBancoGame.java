@@ -114,11 +114,11 @@ public class PuntoBancoGame {
 		if(truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice == playerBet) {
 			hasWon = true;
 			winMsg(betAmount);
-			
+		
 		} else if (truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice != playerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
-			
+	
 		} else if(truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice == bankerBet) {
 			hasWon = true;
 			winMsg(betAmount);
@@ -126,17 +126,29 @@ public class PuntoBancoGame {
 		} else if (truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice != bankerBet) {
 			hasWon = false;
 			loseMsg(betAmount);
-		
+			
 		} else if (truePlayerScore(playerScore) == trueBankerScore(bankerScore) && choice == tie){
 			hasWon = true;
 			winMsg(betAmount * 5);
-		
+			
 		} else {
 			hasWon = false;
 			loseMsg(betAmount);
 			
 		}
-		return hasWon;
+		
+		if(cardDeck.getDeck().size() <= 0)
+		{	
+			System.out.print("shuffeling the cards");
+			cardDeck = new CardDeck();
+			return hasWon;
+			
+			
+		}else
+		{
+			return hasWon;
+		}
+		
 	}
 	
 	/**
@@ -196,21 +208,20 @@ public class PuntoBancoGame {
 	/**
 	 * Asks the player whether they wants to continue playing the game.
 	 */
-	public void promptContinue() throws FileNotFoundException {
+	public boolean promptContinue() throws FileNotFoundException {
 		
 		boolean play = false;
 		
 		System.out.print("\nDo you want to play again (Y/N)? ");
-		char choice = input.next().toLowerCase().charAt(0);
+		
+		char choice = input.nextLine().toLowerCase().charAt(0);
 		
 		if (choice == 'y') {
 			play = true;
-			launchGame();
-		} else if (choice == 'n') {
+		} else {
 			play = false;
-			gm.showMainMenu();
 		}
-		
+		return play;
 	}
 	
 	
