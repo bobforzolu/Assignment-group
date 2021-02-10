@@ -51,7 +51,7 @@ public class GameManager {
 		
 		String name;
 		
-		// the start scrren to get the players name
+		// the start screen to get the players name
 		name = greetPlayer();
 		
 		// start the game and get the neacesery information
@@ -73,7 +73,7 @@ public class GameManager {
 			endResult(name,ifHasWon, betAmount);
 			ballance = getPlayerBallance(name);
 
-			if(ballance >= 0) 
+			if(ballance > 0) 
 			{
 				keepPlaying = game.promptContinue();
 			}
