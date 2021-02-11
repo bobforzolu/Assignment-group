@@ -119,18 +119,18 @@ public class PuntoBancoGame {
 	 * @param betAmount
 	 */
 	private void winMsg(double betAmount) {
-		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
-				   	    + "   $          YOU WIN %-4.2f!            $%n"
-				   	    + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
+		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
+				   	    + "   $          YOU WIN %-5.2f!            $%n"
+				   	    + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
 	}
 	/**
 	 * Displays a losing message if the gambler bets incorrectly.
 	 * @param betAmount
 	 */
 	private void loseMsg(double betAmount) {
-		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
-					    + "   $         YOU LOSE %-4.2f!             $%n"
-			   	        + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
+		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
+					    + "   $         YOU LOSE %-5.2f!             $%n"
+			   	        + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
 	}
 	/**
 	 * Sums the players score to modulo 10.
@@ -231,9 +231,11 @@ public class PuntoBancoGame {
 		return betAmount;
 	}
 	private void dealCards() {
-		System.out.printf("%n               -PUNTO BANCO-            %n"
+		System.out.printf("%n               W E L C O M E              %n"
+						+ "                    T O                     %n"
+						+ "         ---P U N T O B A N C O---          %n"
 	    				+ "+====================+=====================+%n"
-	    				+ "|PLAYER              |BANKER               |%n"
+	    				+ "|     P L A Y E R    |     B A N K E R     |%n"
 	    				+ "+====================+=====================+%n");
 		
 		playerHand = cardDeck.getDeck().remove(0);
