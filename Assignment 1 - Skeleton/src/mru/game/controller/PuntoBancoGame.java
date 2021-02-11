@@ -21,9 +21,10 @@ public class PuntoBancoGame {
 	Scanner input;
 	Card playerHand;
 	Card bankerHand;
+
 	
-	private int playerScore;
-	private int bankerScore;
+	private int playerScore = 0;
+	private int bankerScore = 0;
 	private double betAmount;
 	
 	
@@ -54,30 +55,76 @@ public class PuntoBancoGame {
 			    		+ "+====================+===================+%n"
 			    		+ "|PLAYER              |BANKER             |%n"
 			    		+ "+====================+===================+%n");
-		{
+	
+		
+			
+		// needs work still
+		/*
+		for (int i = 1; i <= 2; i++) {
+			
+			playerHand = cardDeck.getDeck().remove(0);
+			bankerHand = cardDeck.getDeck().remove(0);
+			playerScore = playerHand.getRank() + playerHand.getRank();
+			bankerScore = bankerHand.getRank() + playerHand.getRank();
+			
+			System.out.printf("|%s                  |%s                 |%n"
+							+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
+			
+			if (truePlayerScore(playerScore) == 8 || truePlayerScore(playerScore) == 9 || trueBankerScore(bankerScore) == 8 || trueBankerScore(bankerScore) == 9) {
+				playerScore = playerHand.getRank() + playerHand.getRank();
+				bankerScore = bankerHand.getRank() + bankerHand.getRank();
+				System.out.printf("|                    |                   |%n"
+								+ "+--------------------+-------------------+%n");	
+				System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+								+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+				break;
+			} else if (truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7 && trueBankerScore(bankerScore) <= 5) {
+				for (int j = 0; j <= 1; i++) {
+					playerScore = playerScore + playerHand.getRank();
+					bankerScore = bankerScore + playerHand.getRank();
+					System.out.printf("|                    |%s                 |%n"
+									+ "+--------------------+-------------------+%n", bankerToZero(bankerHand));	
+				}
+				break;
+			} else if (playerHand.getRank() == 2 || playerHand.getRank() == 3 && trueBankerScore(bankerScore) <= 4) {
+				for (int j = 0; j <= 1; i++) {
+					playerScore = playerScore + playerHand.getRank();
+					bankerScore = bankerScore + playerHand.getRank();
+					System.out.printf("|%s                  |%s                 |%n"
+									+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
+				}
+				break;
+			}
+		}
+		*/
+
+		
+			
+		
 			if (truePlayerScore(playerScore) == 8 || truePlayerScore(playerScore) == 9 || trueBankerScore(bankerScore) == 8 || trueBankerScore(bankerScore) == 9) {
 				for (int i = 0; i <= 1; i ++) {
 					playerHand = cardDeck.getDeck().remove(0);
 					bankerHand = cardDeck.getDeck().remove(0);
 					playerScore = playerHand.getRank() + playerHand.getRank();
-					bankerScore = bankerHand.getRank()+ bankerHand.getRank();
+					bankerScore = bankerHand.getRank() + bankerHand.getRank();
 					
 					System.out.printf("|%s                  |%s                 |%n"
-									+ "+--------------------+-------------------+%n", playerHand, bankerHand);
+									+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
 				}
+				
 					System.out.printf("|                    |                   |%n"
-									+ "+--------------------+-------------------+%n"
-									+ "|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
-									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));	
+									+ "+--------------------+-------------------+%n");	
+					System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));					
 			} else if (truePlayerScore(playerScore) <= 5) {
 				for (int i = 0; i <= 2; i++) {
 					playerHand = cardDeck.getDeck().remove(0);
 					bankerHand = cardDeck.getDeck().remove(0);
-					playerScore = playerHand.getRank() + playerHand.getRank() + playerHand.getRank();
-					bankerScore = bankerHand.getRank()+ bankerHand.getRank() + bankerHand.getRank();
+					playerScore = playerScore + playerHand.getRank();
+					bankerScore = bankerScore + bankerHand.getRank();
 					
 					System.out.printf("|%s                  |%s                 |%n"
-									+ "+--------------------+-------------------+%n", playerHand, bankerHand);
+									+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
 				}
 					System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
 									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
@@ -85,27 +132,27 @@ public class PuntoBancoGame {
 				for (int i = 0; i <= 2; i++) {
 					playerHand = cardDeck.getDeck().remove(0);
 					bankerHand = cardDeck.getDeck().remove(0);
-					playerScore =+ playerHand.getRank();
-					bankerScore =+ bankerHand.getRank();
-					
-					System.out.printf("|%s                  |%s                 |%n"
-									+ "+--------------------+-------------------+%n", playerHand, bankerHand);
+					playerScore = playerScore + playerHand.getRank();
+					bankerScore = bankerScore + bankerHand.getRank();
+
+					System.out.printf("|                    |%s                 |%n"
+									+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
 				}
 					System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
 									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
-
-				} else if (truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7 && trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7) {
-					for (int i = 0; i <= 2; i++) {
+			} else if (truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7 && trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7) {
+					for (int i = 0; i <= 1; i++) {
 						playerHand = cardDeck.getDeck().remove(0);
 						bankerHand = cardDeck.getDeck().remove(0);
-						playerScore =+ playerHand.getRank();
-						bankerScore =+ bankerHand.getRank();
-						System.out.printf("|%s                  |%s                 |%n"
-										+ "+--------------------+-------------------+%n", playerHand, bankerHand);
-					}
-					
+						playerScore = playerScore + playerHand.getRank();
+						bankerScore = bankerScore + bankerHand.getRank();
+					System.out.printf("|                    |                   |%n"
+									+ "+--------------------+-------------------+%n", playerToZero(playerHand), bankerToZero(bankerHand));
 				}
-		}
+					System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
+									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			}
+		
 		
 		// we need a menu 
 	
@@ -135,15 +182,8 @@ public class PuntoBancoGame {
 			loseMsg(betAmount);
 			
 		}
-		
-			
-		
-			
+
 			return hasWon;
-			
-			
-		
-		
 	}
 	
 	/**
@@ -200,6 +240,37 @@ public class PuntoBancoGame {
 			return newBankerScore;
 		}
 	}
+	/**
+	 * Sets players face cards and 10 cards to zero.
+	 * @param newPlayerHand
+	 * @return
+	 */
+	
+	private Card playerToZero(Card newPlayerHand) {
+		playerHand = newPlayerHand;
+		if (newPlayerHand.getRank() >= 10) {
+			newPlayerHand.setRank(0);
+			return newPlayerHand;
+		} else {
+			return playerHand;
+		}
+	}
+	/**
+	 * Sets bankers face cards and 10 cards to zero.
+	 * @param newBankerHand
+	 * @return 
+	 */
+	
+	private Card bankerToZero(Card newBankerHand) {
+		bankerHand = newBankerHand;
+		if (newBankerHand.getRank() >= 10) {
+			newBankerHand.setRank(0);
+			return newBankerHand;
+		} else {
+			return bankerHand;
+		}
+	}
+	
 	/**
 	 * Asks the player whether they wants to continue playing the game.
 	 */
