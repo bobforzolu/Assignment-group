@@ -55,7 +55,7 @@ public class GameManager {
 		name = greetPlayer();
 		
 		// start the game and get the neacesery information
-		game = new PuntoBancoGame();
+		
 		
 		
 		// coditions to update game information and to loop the game

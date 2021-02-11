@@ -151,7 +151,28 @@ public class PuntoBancoGame {
 				}
 					System.out.printf("|PLAYER SCORE: %d    |BANKER SCORE: %d   |%n" 
 									+ "+====================+===================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			}else if(truePlayerScore(playerScore) == 2|| trueBankerScore(bankerScore) == 3 &&  trueBankerScore(bankerScore) <= 4 ) {
+				
+			}else if(truePlayerScore(playerScore) == 2|| trueBankerScore(bankerScore) == 3 &&  trueBankerScore(bankerScore) == 5 && trueBankerScore(bankerScore) == 6 && trueBankerScore(bankerScore) == 7){
+			
+			}else if(truePlayerScore(playerScore) == 4|| trueBankerScore(bankerScore) == 5 &&  trueBankerScore(bankerScore) <= 5){
+				
+			}else if(truePlayerScore(playerScore) == 4|| trueBankerScore(bankerScore) == 5 &&  trueBankerScore(bankerScore) == 6 &  trueBankerScore(bankerScore) == 7){
+				
+			}else if(truePlayerScore(playerScore) == 6|| trueBankerScore(bankerScore) == 7 &&  trueBankerScore(bankerScore) <= 6){
+				
+			}else if(truePlayerScore(playerScore) == 6|| trueBankerScore(bankerScore) == 7 &&   trueBankerScore(bankerScore) == 7){
+				
+			}else if(truePlayerScore(playerScore) == 8 &&   trueBankerScore(bankerScore) <= 2){
+				
+			}else if(truePlayerScore(playerScore) == 8 &&   trueBankerScore(bankerScore) >= 3 && trueBankerScore(bankerScore) <=7){
+				
+			}else if(truePlayerScore(playerScore) == 9|| trueBankerScore(bankerScore) == 10 || trueBankerScore(bankerScore) == 0 &&   trueBankerScore(bankerScore) <= 3){
+				
+			}else if(truePlayerScore(playerScore) == 9|| trueBankerScore(bankerScore) == 10 || trueBankerScore(bankerScore) == 0 &&   trueBankerScore(bankerScore) >= 4 &&   trueBankerScore(bankerScore) <= 7){
+				
 			}
+			
 		
 		
 		// we need a menu 
@@ -182,7 +203,7 @@ public class PuntoBancoGame {
 			loseMsg(betAmount);
 			
 		}
-
+			System.out.print(cardDeck.getDeck().size());
 			return hasWon;
 	}
 	
