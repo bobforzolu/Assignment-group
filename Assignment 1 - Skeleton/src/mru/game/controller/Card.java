@@ -75,6 +75,7 @@ public class Card {
 		else if (rank == 12)
 			name = "Queen of ";
 		
+		
 		return name + suit;
 	}
 

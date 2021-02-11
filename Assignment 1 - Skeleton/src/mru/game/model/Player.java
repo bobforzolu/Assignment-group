@@ -95,20 +95,15 @@ public class Player {
 	/**
 	 *@decription saves the player data
 	 */
-	public String toString()
-	{
-		
-		
-		String info = "\n              -PLAYER INFO-           "
-				+ "\n+==============+==========+==============+"
-				+ "\n|NAME          |# WINS    |BALANCE       |" 
-				+ "\n+==============+==========+==============+"
-				+ "\n|"+playerName+"|"+wins+"  |$"+balance+"  |"
-				+ "\n+--------------+----------+--------------+";
-		
-		return info;
-		
+	public void findPlayer() {
+		System.out.printf("\n              --PLAYER INFO--             "
+						+ "\n+==============+==========+==============+"
+						+ "\n|NAME          |# WINS    |BALANCE       |" 
+						+ "\n+==============+==========+==============+"
+						+ "\n|%-14s|%-10d|$%-13.2f|"
+						+ "\n+--------------+----------+--------------+", playerName, wins, balance);
 	}
+
 	/**
 	 *@decription prints the information of the top players
 	 *@param none
@@ -118,8 +113,8 @@ public class Player {
 	{
 		
 		System.out.printf(
-				 "%n|%s                |%d               |"
-				+ "%n+-----------------+-----------------+", playerName, wins);
+				 "%n|%-17s|%-17d|                         "
+			   + "%n+-----------------+-----------------+", playerName, wins);
 		
 	}
 	/**

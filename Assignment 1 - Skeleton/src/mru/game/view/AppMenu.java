@@ -75,7 +75,7 @@ public class AppMenu {
 	}
 	public void topPlayerMenu()
 	{
-		System.out.printf("%n      -PLAYER INFO-          "
+		System.out.printf("%n           --LEADERBOARD--         "
 				+ "%n+=================+=================+"
 				+ "%n|NAME             |# WINS           |"
 				+ "%n+=================+=================+");

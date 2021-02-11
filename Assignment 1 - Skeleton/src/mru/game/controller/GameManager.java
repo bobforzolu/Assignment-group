@@ -185,7 +185,7 @@ public class GameManager {
 		for(Player p: players) {
 			if(p.getName().equals(name))
 			{
-				ply = p;
+				p.findPlayer();
 				break;
 			}
 		}
