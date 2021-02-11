@@ -202,11 +202,10 @@ public class PuntoBancoGame {
 			hasWon = false;
 			loseMsg(betAmount);
 			
-		}
-			System.out.print(cardDeck.getDeck().size());
-			return hasWon;
+			
 	}
-	
+		return hasWon;
+	}
 	/**
 	 * Gets the gambler's bet.
 	 * @return Gamblers bet amount.

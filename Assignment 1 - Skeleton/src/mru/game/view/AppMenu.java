@@ -95,7 +95,6 @@ public class AppMenu {
 		System.out.print("\nHow much would you like to bet this round? ");
 		double choice = input.nextInt();
 		
-			
 		return choice;
 		
 		
