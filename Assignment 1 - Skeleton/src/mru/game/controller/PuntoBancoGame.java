@@ -119,18 +119,18 @@ public class PuntoBancoGame {
 	 * @param betAmount
 	 */
 	private void winMsg(double betAmount) {
-		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
-				   	    + "   $          YOU WIN %-5.2f!            $%n"
-				   	    + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
+		System.out.printf("%n  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
+				   	    + "  $          YOU WIN!! + $%-14.2f$          %n"
+				   	    + "  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
 	}
 	/**
 	 * Displays a losing message if the gambler bets incorrectly.
 	 * @param betAmount
 	 */
 	private void loseMsg(double betAmount) {
-		System.out.printf("%n   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
-					    + "   $         YOU LOSE %-5.2f!             $%n"
-			   	        + "   $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
+		System.out.printf("%n  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n"
+					    + "  $          YOU LOSE!! - $%-14.2f$          %n"
+			   	        + "  $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$%n", betAmount);
 	}
 	/**
 	 * Sums the players score to modulo 10.
