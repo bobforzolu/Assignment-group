@@ -29,7 +29,7 @@ public class GameManager {
 	ArrayList<Player> players;
 	AppMenu appMenu;
 	PuntoBancoGame game;
-	 
+	CardDeck cardDeck;
 	
 	private int score = 0;
 	
@@ -64,6 +64,7 @@ public class GameManager {
 		double betAmount;
 		
 		game = new PuntoBancoGame();
+		
 		
 		// the game
 		while(keepPlaying && balance > 0)
