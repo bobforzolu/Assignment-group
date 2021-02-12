@@ -285,43 +285,95 @@ public class PuntoBancoGame {
 			System.out.printf("|                    |                     |%n"
 							+ "+--------------------+---------------------+%n");
 		} else if ((truePlayerScore(playerScore) == 6 || truePlayerScore(playerScore) == 7) && (trueBankerScore(bankerScore) <= 5)) {
-			bankerScore += bankerHand.getRank();
+			if (bankerHand.getRank() >= 10) {
+				bankerScore += 0;
+			} else {
+				bankerScore += bankerHand.getRank();
+			}
 			System.out.printf("|                    |%-21s|               %n"
 							+ "+--------------------+---------------------+%n", bankerHand);
 		} else if ((truePlayerScore(playerScore) <= 5 && (playerHand.getRank() == 2 || playerHand.getRank() == 3)) && (trueBankerScore(bankerScore) <= 4)) {
-			playerScore += playerHand.getRank();
-			bankerScore += bankerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
+			if (bankerHand.getRank() >= 10) {
+				bankerScore += 0;
+			} else {
+				bankerScore += bankerHand.getRank();
+			}
 			System.out.printf("|%-20s|%-21s|                              %n"
 							+ "+--------------------+---------------------+%n", playerHand, bankerHand);
 		} else if ((truePlayerScore(playerScore) <= 5 && playerHand.getRank() == 2 || playerHand.getRank() == 3) && (trueBankerScore(bankerScore) == 5 || trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7)) {
-			playerScore += playerScore + playerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 4 || playerHand.getRank() == 5) && (trueBankerScore(bankerScore) <= 5)) {
-			playerScore += playerHand.getRank();
-			bankerScore += bankerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
+			if (bankerHand.getRank() >= 10) {
+				bankerScore += 0;
+			} else {
+				bankerScore += bankerHand.getRank();
+			}
 			System.out.printf("|%-20s|%-21s|                               %n"
 							+ "+--------------------+---------------------+%n", playerHand, bankerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 4 || playerHand.getRank() == 5) && (trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7)) {
-			playerScore += playerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 8) && (trueBankerScore(bankerScore) <= 2)) {
-			playerScore += playerHand.getRank();
-			bankerScore += bankerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
+			if (bankerHand.getRank() >= 10) {
+				bankerScore += 0;
+			} else {
+				bankerScore += bankerHand.getRank();
+			}
 			System.out.printf("|%-20s|%-21s|                               %n"
 							+ "+--------------------+---------------------+%n", playerHand, bankerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 8) && (trueBankerScore(bankerScore) == 3 || trueBankerScore(bankerScore) == 4 || trueBankerScore(bankerScore) == 5 || trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7 )) {
-			playerScore += playerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 1 || playerHand.getRank() == 9 || playerHand.getRank() == 10 || playerHand.getRank() == 11 || playerHand.getRank() == 12 || playerHand.getRank() == 13) && (trueBankerScore(bankerScore) <= 3)) {
-			playerScore += playerHand.getRank();
-			bankerScore += bankerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
+			if (bankerHand.getRank() >= 10) {
+				bankerScore += 0;
+			} else {
+				bankerScore += bankerHand.getRank();
+			}
 			System.out.printf("|%-20s|%-21s|                               %n"
 							+ "+--------------------+---------------------+%n", playerHand, bankerHand);
 		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 1 || playerHand.getRank() == 9 || playerHand.getRank() == 10 || playerHand.getRank() == 11 || playerHand.getRank() == 12 || playerHand.getRank() == 13) && (trueBankerScore(bankerScore) == 4 || trueBankerScore(bankerScore) == 5 || trueBankerScore(bankerScore) == 6 || trueBankerScore(bankerScore) == 7)) {
-			playerScore += playerHand.getRank();
+			if (playerHand.getRank() >= 10) {
+				playerScore += 0;
+			} else {
+				playerScore += playerHand.getRank();
+			}
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		}
