@@ -38,78 +38,53 @@ public class PuntoBancoGame {
 		 
 	}
 	
-	public boolean launchGame(double myBallance) throws FileNotFoundException 
+	public boolean launchGame(double myBalance) throws FileNotFoundException 
 	{
 		
-		// players betting option
 		char choice = appMenu.betMenu();
-		char playerBet = 'p';
-		char bankerBet = 'b';
-		char tie = 't';
-		ballanceCheck(myBallance);
+		balanceCheck(myBalance);
 		boolean hasWon = false;
 		
-
-		
-		/*
-		playerHand = cardDeck.getDeck().remove(0);
-		playerHand = playerToZero(playerHand);
-		playerScore += playerHand.getRank();
-		
-		System.out.println(playerHand);
-		
-		playerHand = cardDeck.getDeck().remove(0);
-		playerHand = playerToZero(playerHand);
-		playerScore = playerScore + playerHand.getRank();
-		
-		System.out.println(playerHand);
-		
-		System.out.println(truePlayerScore(playerScore));
-		
-		System.out.println(cardDeck.getDeck().size());
-		*/
-		
-		
-		
-		dealCards();
-
-			
+		switch (choice) {
 	
-		System.out.printf("|PLAYER SCORE: %2d    |BANKER SCORE: %-6d |  %n" 
-						+ "+====================+=====================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
-		
-		
-		
+		case 'p':
+			dealCards();
+			if (truePlayerScore(playerScore) > trueBankerScore(bankerScore)) {
+				hasWon = true;
+				winMsg(betAmount);
+			} else {
+				hasWon = false;
+				loseMsg(betAmount);
+			}
+			break;
+		case 'b':
+			dealCards();
+			if (truePlayerScore(playerScore) < trueBankerScore(bankerScore)) {
+				hasWon = true;
+				winMsg(betAmount);
+			} else {
+				hasWon = false;
+				loseMsg(betAmount);
+			}
+			break;
+		case 't':
+			dealCards();
+			if (truePlayerScore(playerScore) == trueBankerScore(bankerScore)) {
+				hasWon = true;
+				winMsg(betAmount * 5);
+			} else {
+				hasWon = false;
+				loseMsg(betAmount);
+			}
+			break;
+		default:
+			System.out.print("\nError: Please try again.\n");
+			launchGame(myBalance);
+		} 
 		// we need a menu 
 	
-
-		if(truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice == playerBet) {
-			hasWon = true;
-			winMsg(betAmount);
-		
-		} else if (truePlayerScore(playerScore) > trueBankerScore(bankerScore) && choice != playerBet) {
-			hasWon = false;
-			loseMsg(betAmount);
-	
-		} else if(truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice == bankerBet) {
-			hasWon = true;
-			winMsg(betAmount);
-			
-		} else if (truePlayerScore(playerScore) < trueBankerScore(bankerScore) && choice != bankerBet) {
-			hasWon = false;
-			loseMsg(betAmount);
-			
-		} else if (truePlayerScore(playerScore) == trueBankerScore(bankerScore) && choice == tie){
-			hasWon = true;
-			winMsg(betAmount * 5);
-			
-		} else {
-			hasWon = false;
-			loseMsg(betAmount);
-			
-			
-	}
 		return hasWon;
+		
 	}
 	/**
 	 * Gets the gambler's bet.
@@ -209,12 +184,33 @@ public class PuntoBancoGame {
 		
 		char choice = input.nextLine().toLowerCase().charAt(0);
 		
-		if (choice == 'y') {
+		switch (choice) {
+		case 'y':
 			play = true;
-		} else {
+			break;
+		case 'n': 
 			play = false;
+			break;
+		default:
+			System.out.print("\nERROR: Invalid character entered.\n"
+						   + "       Please try again.");
+			promptContinue();
 		}
 		return play;
+		
+		/*
+		if (choice == 'y') {
+			play = true;
+		} else if (choice == 'n') {
+			play = false;
+		} else {
+			System.out.print("\nERROR: Invalid character entered.\n"
+						   + "Please try again.\n");
+			promptContinue();
+			
+		}
+		return play;
+		*/
 	}
 	
 	/**
@@ -222,13 +218,13 @@ public class PuntoBancoGame {
 	 * @param ballance players ballance
 	 * @return betAmount the amount the player wants to bett on
 	 */
-	public double ballanceCheck (double ballance)
+	public double balanceCheck (double balance)
 	{
 		betAmount = appMenu.placeBet();
 		
-		while(betAmount > ballance || betAmount < 0)
+		while(betAmount > balance || betAmount < 0)
 		{
-			System.out.println("the amount you entered is greater than your ballance of $" + ballance);
+			System.out.println("the amount you entered is greater than your ballance of $" + balance);
 			System.out.println("bett an amount thats within the range of your ballance");
 
 			betAmount = appMenu.placeBet();
@@ -322,5 +318,7 @@ public class PuntoBancoGame {
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		}
+		System.out.printf("|PLAYER SCORE: %2d    |BANKER SCORE: %-6d |  %n" 
+				+ "+====================+=====================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
 	}
 }

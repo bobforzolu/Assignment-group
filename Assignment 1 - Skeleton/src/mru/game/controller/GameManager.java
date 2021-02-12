@@ -60,30 +60,30 @@ public class GameManager {
 		
 		// coditions to update game information and to loop the game
 		boolean keepPlaying = true;
-		double ballance = getPlayerBallance(name);
+		double balance = getPlayerBalance(name);
 		double betAmount;
 		
 		
 		
 		// the game
-		while(keepPlaying && ballance > 0)
+		while(keepPlaying && balance > 0)
 		{
 			game = new PuntoBancoGame();
-			boolean ifHasWon = game.launchGame(ballance);
+			boolean ifHasWon = game.launchGame(balance);
 			betAmount = game.getBet();
 			endResult(name,ifHasWon, betAmount);
-			ballance = getPlayerBallance(name);
+			balance = getPlayerBalance(name);
 
-			if(ballance > 0) 
+			if(balance > 0) 
 			{
 				keepPlaying = game.promptContinue();
 			}
 		}
 		
 		// bring back the player to the Main menu after the game is done
-		if( ballance <= 0)
+		if( balance <= 0)
 		{
-			System.out.println("\nyour ballance is less or equal to zero u can no longer play");
+			System.out.println("\nyour balance is less or equal to zero u can no longer play");
 			System.out.println("going back to the Main Menu");
 			
 		}
@@ -237,7 +237,7 @@ public class GameManager {
 	}
 	
 	/** 
-	 *  updates the players ballance and wins
+	 *  updates the players balance and wins
 	 * @param name of the player
 	 * @param ifHasWon checks weather the player has won or lost
 	 * @param betAmount amount the plaer betted
@@ -299,36 +299,36 @@ public class GameManager {
 		{
 			players.add(new Player(name,initialBal,inintalWin));
 			
-			System.out.print("\n********************************************************************"
-							+ "\n      Welcome " + name + "    --- Your initial balance is: " + initialBal + " $     ***"
-							+ "\n********************************************************************");
+			System.out.printf("\n********************************************************************"
+							+ "\n***    Welcome %-10s---    Your initial balance is: $%-7s***"
+							+ "\n********************************************************************", name, initialBal);
 			
 			// greet the new player
 		} else {
 			// welcome the returning player
-			System.out.print("\n********************************************************************"
-							+ "\n***   Welcome back " + name + "    ---   Your balance is: " + p.getBalance() + " $     ***"
-							+ "\n********************************************************************");
+			System.out.printf("\n********************************************************************"
+							+ "\n***    Welcome back %-10s---   Your balance is: $%-11s***"
+							+ "\n********************************************************************", name, p.getBalance());
 		}
 		return name;
 	}
 	
 	/**
-	 * gets the current ballance of the player
+	 * gets the current balance of the player
 	 * @param name of the player
-	 * @return ballance players ballance
+	 * @return balance players balance
 	 */
-	public double getPlayerBallance(String name)
+	public double getPlayerBalance(String name)
 	{
-		double ballance = 0;
+		double balance = 0;
 		for(Player p: players) {
 			if(p.getName().equals(name))
 			{
-				ballance = p.getBalance();
+				balance = p.getBalance();
 			}
 		
 		}
-		return ballance;
+		return balance;
 	}
 	
 }
