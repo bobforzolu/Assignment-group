@@ -63,5 +63,6 @@ class Cardtest {
 		
 		assertNotEquals(card.getDeck(),deck2.getDeck());
 	}
-
+	
+	
 }
