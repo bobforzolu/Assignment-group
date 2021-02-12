@@ -69,7 +69,7 @@ public class AppMenu {
 		{
 		System.out.print(ply);
 		}else {
-			System.out.print("the name u entered does not exist");
+			System.out.print("\nERROR: The name you entered does not exist.");
 
 		}
 	}
