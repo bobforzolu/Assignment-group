@@ -94,14 +94,17 @@ public class AppMenu {
 	public double placeBet() {
 		System.out.print("\nHow much would you like to bet this round? ");
 		double choice ;
-		try {
-			 choice = input.nextInt();
-		}catch(Exception err) {
-			System.out.print("errore: enter u entered a letter");
-			 choice = input.nextInt();
-
- 
+		
+		
+		
+		while(!input.hasNextDouble())
+		{
+			input.next();
+			System.out.print("enter a number: ");
 		}
+		choice = input.nextDouble();
+ 
+		
 		
 		
 		return choice;
