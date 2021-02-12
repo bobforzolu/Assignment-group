@@ -67,12 +67,16 @@ public class AppMenu {
 	{
 		if(ply != null)
 		{
-		System.out.print(ply);
+		//System.out.print(ply);
+			ply.searchPlayer();
 		}else {
 			System.out.print("\nERROR: The name you entered does not exist.");
 
 		}
 	}
+	/**
+	 * a menu for the players with the most wins
+	 */
 	public void topPlayerMenu()
 	{
 		System.out.printf("%n           --LEADERBOARD--         "
@@ -80,7 +84,10 @@ public class AppMenu {
 				+ "%n|NAME             |# WINS           |"
 				+ "%n+=================+=================+");
 	}
-	
+	/**
+	 * options that the player will bett on
+	 * @return choice the selected option
+	 */
 	public char betMenu() {
 		System.out.print("\n\nWho do you want to bet on?\n\n"
 				+ "            (P) Player Wins\n"
@@ -90,7 +97,10 @@ public class AppMenu {
 		char choice = input.next().toLowerCase().charAt(0);
 		return choice;
 	}
-	
+	/**
+	 * asks the player to place their betts
+	 * @return choice the amount that was bett on
+	 */
 	public double placeBet() {
 		System.out.print("\nHow much would you like to bet this round? ");
 		double choice ;

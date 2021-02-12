@@ -28,7 +28,10 @@ public class PuntoBancoGame {
 	private int bankerScore = 0;
 	private double betAmount;
 	
-	
+	/**
+	 * constructer for the PuntoBanco class
+	 * @throws FileNotFoundException
+	 */
 	public PuntoBancoGame() throws FileNotFoundException 
 	{
 		 cardDeck = new CardDeck();
@@ -40,6 +43,12 @@ public class PuntoBancoGame {
 		 
 	}
 	
+	/**
+	 * combines all the logic that makes up the game
+	 * @param myBalance players current ballance
+	 * @return hasWon returns true or false depending if the player wins or loses
+	 * @throws FileNotFoundException
+	 */
 	public boolean launchGame(double myBalance) throws FileNotFoundException 
 	{
 		
@@ -196,6 +205,9 @@ public class PuntoBancoGame {
 		
 		return betAmount;
 	}
+	/**
+	 * deals cards to the player and banker
+	 */
 	public void dealCards() {
 		System.out.printf("%n               W E L C O M E              %n"
 						+ "                    T O                     %n"

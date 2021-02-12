@@ -46,7 +46,10 @@ public class GameManager {
 		
 		showMainMenu();
 	}
-	
+	/**
+	 * launches the PuntoBanco Game
+	 * @throws FileNotFoundException
+	 */
 	private void playGame() throws FileNotFoundException  {
 		
 		String name;
@@ -54,7 +57,6 @@ public class GameManager {
 		// the start screen to get the players name
 		name = greetPlayer();
 		
-		// start the game and get the neacesery information
 		
 		
 		

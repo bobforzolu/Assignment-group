@@ -95,25 +95,16 @@ public class Player {
 	/**
 	 *@decription saves the player data
 	 */
-	public String toString() {
+	public void searchPlayer() {
 		
-		String info = "\n              -PLAYER INFO-           "
-				+ "\n+==============+==========+==============+"
-				+ "\n|NAME          |# WINS    |BALANCE       |" 
-				+ "\n+==============+==========+==============+"
-				+ "\n|"+playerName+"|"+wins+"  |$"+balance+"  |"
-				+ "\n+--------------+----------+--------------+";
-
-		return info;
 		
-		/*
 		System.out.printf("\n              --PLAYER INFO--             "
 						+ "\n+==============+==========+==============+"
 						+ "\n|NAME          |# WINS    |BALANCE       |" 
 						+ "\n+==============+==========+==============+"
 						+ "\n|%-14s|%-10d|$%-13.2f|"
 						+ "\n+--------------+----------+--------------+", playerName, wins, balance);
-		*/
+		
 	}
 
 	/**
