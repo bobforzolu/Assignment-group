@@ -47,9 +47,21 @@ class Cardtest {
 		
 			assertEquals(expectedcars, cardInfo);
 		}
+			
+	}
+	/**
+	 * create a newDeck and chaeck if the colections are not the same
+	 */
+	@Test
+	void newDeck()
+	{
+		
+		
+		CardDeck deck2 = new CardDeck();
 		
 		
 		
+		assertNotEquals(card.getDeck(),deck2.getDeck());
 	}
 
 }
