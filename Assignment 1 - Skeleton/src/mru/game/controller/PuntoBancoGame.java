@@ -159,7 +159,7 @@ public class PuntoBancoGame {
 			play = true;
 			playerScore = 0;
 			bankerScore = 0;
-			if (cardDeck.getDeck().size() <= 6) {
+			if (cardDeck.getDeck().size() < 6) {
 				System.out.print("\nShuffling deck...");
 				cardDeck = new CardDeck();
 			}
