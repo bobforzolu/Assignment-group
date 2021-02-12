@@ -63,12 +63,12 @@ public class GameManager {
 		double balance = getPlayerBalance(name);
 		double betAmount;
 		
-		
+		game = new PuntoBancoGame();
 		
 		// the game
 		while(keepPlaying && balance > 0)
 		{
-			game = new PuntoBancoGame();
+			
 			boolean ifHasWon = game.launchGame(balance);
 			betAmount = game.getBet();
 			endResult(name,ifHasWon, betAmount);
