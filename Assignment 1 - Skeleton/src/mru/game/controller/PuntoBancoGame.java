@@ -21,8 +21,9 @@ public class PuntoBancoGame {
 	Scanner input;
 	Card playerHand;
 	Card bankerHand;
-
 	
+	
+	private ArrayList <Card> deck;
 	private int playerScore = 0;
 	private int bankerScore = 0;
 	private double betAmount;
@@ -35,6 +36,7 @@ public class PuntoBancoGame {
 		 appMenu = new AppMenu();
 		 player = new Player();
 		 input = new Scanner(System.in);
+		 deck = new ArrayList<Card>();
 		 
 	}
 	
@@ -142,38 +144,6 @@ public class PuntoBancoGame {
 	}
 	
 	/**
-	 * Sets players face cards and 10 cards to zero.
-	 * @param newPlayerHand
-	 * @return
-	 */
-	
-	private Card playerToZero(Card newPlayerHand) {
-		playerHand = newPlayerHand;
-		if (newPlayerHand.getRank() >= 10) {
-			newPlayerHand.setRank(0);
-			return newPlayerHand;
-		} else {
-			return playerHand;
-		}
-	}
-	/**
-	 * Sets bankers face cards and 10 cards to zero.
-	 * @param newBankerHand
-	 * @return 
-	 */
-	
-	private Card bankerToZero(Card newBankerHand) {
-		bankerHand = newBankerHand;
-		if (newBankerHand.getRank() >= 10) {
-			newBankerHand.setRank(0);
-			newBankerHand.toString();
-			return newBankerHand;
-		} else {
-			return bankerHand;
-		}
-	}
-	
-	/**
 	 * Asks the player whether they wants to continue playing the game.
 	 */
 	public boolean promptContinue() throws FileNotFoundException {
@@ -189,8 +159,9 @@ public class PuntoBancoGame {
 			play = true;
 			playerScore = 0;
 			bankerScore = 0;
-			if (cardDeck.getDeck().size() < 4) {
-				CardDeck cardDeck = new CardDeck();
+			if (cardDeck.getDeck().size() <= 6) {
+				System.out.print("\nShuffling deck...");
+				cardDeck = new CardDeck();
 			}
 			break;
 		case 'n': 
@@ -198,7 +169,7 @@ public class PuntoBancoGame {
 			break;
 		default:
 			System.out.print("\nERROR: Invalid character entered.\n"
-						   + "       Please try again.");
+						   + "       Please try again.\n");
 			promptContinue();
 		}
 		return play;
@@ -216,8 +187,8 @@ public class PuntoBancoGame {
 		
 		while(betAmount > balance || betAmount < 0)
 		{
-			System.out.println("the amount you entered is greater than your ballance of $" + balance);
-			System.out.println("bett an amount thats within the range of your ballance");
+			System.out.println("\nThe amount you entered is greater than your balance of $" + balance + ".");
+			System.out.println("Please bet an amount thats within the range of your balance.");
 
 			betAmount = appMenu.placeBet();
 
@@ -355,7 +326,7 @@ public class PuntoBancoGame {
 			}
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
-		} else if ((truePlayerScore(playerScore) <= 5) && (playerHand.getRank() == 1 || playerHand.getRank() == 9 || playerHand.getRank() == 10 || playerHand.getRank() == 11 || playerHand.getRank() == 12 || playerHand.getRank() == 13) && (trueBankerScore(bankerScore) <= 3)) {
+		} else if ((truePlayerScore(playerScore) <= 5 && playerHand.getRank() == 1 || playerHand.getRank() == 9 || playerHand.getRank() == 10 || playerHand.getRank() == 11 || playerHand.getRank() == 12 || playerHand.getRank() == 13) && (trueBankerScore(bankerScore) <= 3)) {
 			if (playerHand.getRank() >= 10) {
 				playerScore += 0;
 			} else {
@@ -377,7 +348,7 @@ public class PuntoBancoGame {
 			System.out.printf("|%-20s|                     |               %n"
 							+ "+--------------------+---------------------+%n", playerHand);
 		}
-		System.out.printf("|PLAYER SCORE: %2d    |BANKER SCORE: %-6d |  %n" 
-				+ "+====================+=====================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
+			System.out.printf("|PLAYER SCORE: %2d    |BANKER SCORE: %-6d |  %n" 
+							+ "+====================+=====================+%n", truePlayerScore(playerScore), trueBankerScore(bankerScore));
 	}
 }

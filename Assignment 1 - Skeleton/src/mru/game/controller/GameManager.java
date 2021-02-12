@@ -84,8 +84,8 @@ public class GameManager {
 		// bring back the player to the Main menu after the game is done
 		if( balance <= 0)
 		{
-			System.out.println("\nyour balance is less or equal to zero u can no longer play");
-			System.out.println("going back to the Main Menu");
+			System.out.println("\nNo money left to bet, you can no longer player.");
+			System.out.println("\nGoing back to the Main Menu");
 			
 		}
 		showMainMenu();	
@@ -116,7 +116,8 @@ public class GameManager {
 			saveFile();
 			break;
 		default:
-			System.out.println("\nError: Please try again.");
+			System.out.println("\nError: Invalid character entered.\n"
+							 + "       Please try again.");
 			showMainMenu();
 		}	
 	}
@@ -232,7 +233,8 @@ public class GameManager {
 			showMainMenu();
 			break;
 		default:
-			System.out.println("\nError: Please try again.");
+			System.out.println("\nError: Invalid character entered.\n"
+							 + "       Please try again.");
 			playerInfoMenu();
 		}
 	}
