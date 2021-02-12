@@ -63,6 +63,23 @@ class Cardtest {
 		
 		assertNotEquals(card.getDeck(),deck2.getDeck());
 	}
-	
+	@Test
+	void newCard() {
+		
+		
+		Card firstCard = card.getDeck().remove(0);
+		Card secondCard = card.getDeck().remove(0);
+		
+		assertNotEquals(firstCard, secondCard);
+		
+	}
+	@Test
+	void ShuffleDeck() {
+		CardDeck deck1 = new CardDeck();
+		CardDeck deck2 = new CardDeck();
+		
+		assertNotEquals(deck1, deck2);
+		
+	}
 	
 }
